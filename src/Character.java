@@ -6,6 +6,7 @@ public abstract class Character {
 	private short attackPerLevel;
 	private short defensePerLevel;
 	private short hpPerLevel;
+	private String name;
 	
 	// Constructor
 	public Character() {}
@@ -73,5 +74,12 @@ public abstract class Character {
 		this.hpPerLevel = hpPerLevel;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
