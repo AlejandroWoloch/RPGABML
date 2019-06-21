@@ -68,7 +68,7 @@ public abstract class Character {
 	// Override toString method.
 	@Override
 	public String toString() {
-		return "Character [getId()=" + getId() + ", getLevel()=" + getLevel() + ", getName()=" + getName() + "]";
+		return "Character [Id = " + getId() + ", Level = " + getLevel() + ", Name = " + getName() + " ]";
 	}
 
 	// Getters and Setters
