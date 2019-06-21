@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public abstract class Character {
 
@@ -51,23 +52,17 @@ public abstract class Character {
 	// Override equals method.
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if (obj != null && obj.getClass().isInstance(Character.class)) {
+			return ((Character) obj).getId() == this.getId();
+		} else {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Character other = (Character) obj;
-		if (id != other.id)
-			return false;
-		if (level != other.level)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+		}
+	}
+	
+	// Override hashCode method.
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	// Override toString method.
