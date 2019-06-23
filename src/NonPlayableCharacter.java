@@ -1,61 +1,55 @@
-//import java.util.ArrayList;
+import java.util.Objects;
+//import java.util.ArrayList; //TODO: remove this o implement an Item interface
 
 public class NonPlayableCharacter extends Character {
-	private static int count = 0;
-	private int id;
+	
+	// Attributes
 	private short expRewarded;
 	//private ArrayList<Item> loot;  //TODO: remove this o implement an Item interface
 	
 	// Constructor
-	public NonPlayableCharacter(short expRewarded) {
-		super();
-		this.setId(++count);
+	public NonPlayableCharacter(String name, short expRewarded) {
+		super((byte) 1, name);
+		this.setExpRewarded(expRewarded);
+	}
+	
+	public NonPlayableCharacter(byte level, String name, short expRewarded) {
+		super(level, name);
 		this.setExpRewarded(expRewarded);
 	}
 	
 	//Methods
+	// Override equals method.
 	@Override
-	public short calculateAttack() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+	
+	// Override hashCode method.
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 
+	// Override toString method.
 	@Override
-	public short calculateDefense() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public short calculateHp() {
-		// TODO Auto-generated method stub
-		return 0;
+	public String toString() {
+		String base = super.toString();
+		String messageFmt = "\n=> NonPlayableCharacter\n[Exp Rewarded: %d ]";
+		return base.concat(String.format(messageFmt, getExpRewarded()));
 	}
 
 	// Getters and Setters
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public short getExpRewarded() {
 		return expRewarded;
 	}
 
 	public void setExpRewarded(short expRewarded) {
-		this.expRewarded = expRewarded;
-	}
-
-	public static int getCount() {
-		return count;
-	}
-
-	public static void setCount(int count) {
-		NonPlayableCharacter.count = count;
-	}
-
-	
+		if (expRewarded > 0) {			
+			this.expRewarded = expRewarded;
+		} else {
+			String error = super.errorMessage; //TODO: How do I fix this?
+			System.out.println(error + "... Experience rewarded must be higher than zero.");
+		}
+	}	
 }
