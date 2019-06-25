@@ -1,17 +1,11 @@
 public class NonPlayableCharacter extends Character {
 	
 	// Attributes
-	private short expRewarded;
+	private int expRewarded;
 	
 	// Constructor
-	public NonPlayableCharacter(String name, short expRewarded) {
-		super((byte) 1, name);
-		this.setExpRewarded(expRewarded);
-	}
-	
-	public NonPlayableCharacter(byte level, String name, short expRewarded) {
+	public NonPlayableCharacter(byte level, String name) {
 		super(level, name);
-		this.setExpRewarded(expRewarded);
 	}
 	
 	//Methods
@@ -36,16 +30,11 @@ public class NonPlayableCharacter extends Character {
 	}
 
 	// Getters and Setters
-	public short getExpRewarded() {
+	public int getExpRewarded() {
 		return expRewarded;
 	}
 
-	public void setExpRewarded(short expRewarded) {
-		if (expRewarded > 0) {			
-			this.expRewarded = expRewarded;
-		} else {
-			String error = super.errorMessage;
-			System.out.println(error + "... Experience rewarded must be higher than zero.");
-		}
+	public void setExpRewarded() {
+		this.expRewarded = (int) (super.calculateAttack() - super.calculateDefense() + (0.5 * super.calculateHp()));
 	}	
 }
