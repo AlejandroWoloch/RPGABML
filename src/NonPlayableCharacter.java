@@ -1,11 +1,7 @@
-import java.util.Objects;
-//import java.util.ArrayList; //TODO: remove this o implement an Item interface
-
 public class NonPlayableCharacter extends Character {
 	
 	// Attributes
 	private short expRewarded;
-	//private ArrayList<Item> loot;  //TODO: remove this o implement an Item interface
 	
 	// Constructor
 	public NonPlayableCharacter(String name, short expRewarded) {
@@ -48,7 +44,7 @@ public class NonPlayableCharacter extends Character {
 		if (expRewarded > 0) {			
 			this.expRewarded = expRewarded;
 		} else {
-			String error = super.errorMessage; //TODO: How do I fix this?
+			String error = super.errorMessage;
 			System.out.println(error + "... Experience rewarded must be higher than zero.");
 		}
 	}	
