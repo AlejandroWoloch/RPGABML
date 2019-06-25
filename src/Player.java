@@ -47,4 +47,12 @@ public class Player extends User {
 	public void createCharacter() {}
 	
 	public void administrateInventory() {}
+
+
+	@Override
+	public String toString() {
+		return "Player";
+	}
+	
+	
 }
