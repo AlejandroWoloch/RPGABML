@@ -5,7 +5,7 @@ public class Player extends User {
 	 */
 	
 	//Attributes
-	private ABML<item> inventory; //Collections of the items that the player has.
+	//private ABML<item> inventory; //Collections of the items that the player has.
 	private PlayableCharacter team; //Character that the Player will use.
 	//private ABML<PlayableCharacter team; //If there's time, there'll be a Collections of characters that the Player could use.
 	private int gold; //Amount of gold the Player will have
@@ -15,13 +15,13 @@ public class Player extends User {
 
 	
 	//Getters and Setters
-	public ABML<item> getInventory() {
+	/*public ABML<item> getInventory() {
 		return inventory;
-	}
+	}*/
 
-	public void setInventory(ABML<item> inventory) {
+	/*public void setInventory(ABML<item> inventory) {
 		this.inventory = inventory;
-	}
+	}*/
 
 	public PlayableCharacter getTeam() {
 		return team;
