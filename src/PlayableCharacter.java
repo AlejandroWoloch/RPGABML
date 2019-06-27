@@ -3,7 +3,7 @@ import java.util.Objects;
 public abstract class PlayableCharacter extends Character{
 
 	//Atributes
-	private static byte nextlevelXP = 100; 	//Used for levelingUp
+	private static byte baseForNextLevelXP = 100; 	//Used for levelingUp
 	private int experience;					//Current XP, can't exceed experience for next level.
 	//private Weapon equipedWeapon;			//Comented until we implement Items class
 	//private Armor equipedArmor;
@@ -45,6 +45,7 @@ public abstract class PlayableCharacter extends Character{
 	}
 	*/
 	
+	//Getters and Setters
 	private void setExperience(int experience) {	//I made it private so you are forced to use the gainExperience method
 		if(experience >= 0) {
 			this.experience = experience;
@@ -59,10 +60,16 @@ public abstract class PlayableCharacter extends Character{
 		return this.experience;
 	}
 	
-	public int getNextLevelXPNeeded() {		//I did a random exponential calculation, not necessarily final
-		return (int) (nextlevelXP * (Math.pow(this.getLevel(), 1.5f)));
+	public static byte getBaseForNextLevelXP() {
+		return PlayableCharacter.baseForNextLevelXP;
 	}
 	
+	public int getNextLevelXPNeeded() {		//I did a random exponential calculation, not necessarily final
+		return (int) (baseForNextLevelXP * (Math.pow(this.getLevel(), 1.5f)));
+	}
+	
+	
+	//Methods used for the leveling up of characters.
 	private boolean isLevelingUpAviable() {		//Controls if current Xp exceeds required XP, and if you are not max level already
 		return ((this.experience > this.getNextLevelXPNeeded()) && (this.getLevel() < this.getMaxLevel()));
 	}
