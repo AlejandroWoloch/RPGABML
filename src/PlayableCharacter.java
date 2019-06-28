@@ -7,6 +7,7 @@ public abstract class PlayableCharacter extends Character{
 	private int experience;					//Current XP, can't exceed experience for next level.
 	//private Weapon equipedWeapon;			//Comented until we implement Items class
 	//private Armor equipedArmor;
+	private static final String errorMsg = "Error. Invalid value";
 	
 	
 	//Constructors
@@ -46,12 +47,16 @@ public abstract class PlayableCharacter extends Character{
 	*/
 	
 	//Getters and Setters
-	private void setExperience(int experience) {	//I made it private so you are forced to use the gainExperience method
+	private void setExperience(int experience) throws Exception {	//I made it private so you are forced to use the gainExperience method
 		if(experience >= 0) {
 			this.experience = experience;
 			if(this.isLevelingUpAviable()) {
 				this.levelUp();
 			}
+		}
+		else {
+			String xpError = "You can't set experience lower than 0";
+			throw new Exception(PlayableCharacter.errorMsg + xpError);
 		}
 		
 	}
@@ -80,9 +85,18 @@ public abstract class PlayableCharacter extends Character{
 		this.setExperience(newXP);
 	}
 	
-	public void gainExperience(int amount) {		//This is the method that we should use outside the class to add experience to a Playable character
+	public void gainExperience(int amount) throws Exception{		//This is the method that we should use outside the class to add experience to a Playable character
 		if(amount > 0) {
-			this.setExperience(amount + this.getExperience());
+			try {
+				this.setExperience(amount + this.getExperience());
+			}
+			catch (Exception e){
+				throw e;
+			}
+		}
+		else {
+			String xpError = "You can't earn negative XP";
+			throw new Exception(PlayableCharacter.errorMsg + xpError);
 		}
 	}
 	
