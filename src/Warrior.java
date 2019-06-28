@@ -3,21 +3,26 @@ public class Warrior extends PhysicalClass{
 	
 	
 	//Constructors
-	public Warrior(String name) {	//For brand new Hunters
+	public Warrior(String name) throws Exception{	//For brand new Hunters
 		super(name);
 	}
 	
-	public Warrior(byte level, String name, int experience, Weapon weapon, Armor armor, int stamina) {  //Used to instance with information from JSON
-		super(level,name,experience,weapon,armor);
-		this.setStamina(stamina);
+	public Warrior(byte level, String name, int experience, int stamina) throws Exception{ //Used to instance characters with data from JSON
+		super(level, name,experience,stamina);
 	}
 	
+	/*COMENTED UNTIL WE IMPLEMENT ITEMS
+	public Warrior(byte level, String name, int experience, Weapon weapon, Armor armor, int stamina) {  //Used to instance with information from JSON
+		super(level,name,experience,weapon,armor,stamina);
+	}
+	*/
+	/*COMENTED UNTIL WE IMPLEMENT SKILLS AND ITEMS
 	@Override
 	public void lernNewSkill(PhysicalSkill newSkill) {
 		if(! this.getSkillList().contains(newSkill)) {
 			if(newSkill.getAviableClasses().contains("Warrior")) {
 				if(newSkill.getLevelRequired() <= this.getLevel())
-					this.skillList.add(newSkill);
+					this.getSkillList().add(newSkill);
 			}
 		}
 	}
@@ -28,5 +33,23 @@ public class Warrior extends PhysicalClass{
 			this.equipedWeapon = weapon;
 		}
 	}
+	*/
 	
+	//toString and Equals
+			@Override
+			public boolean equals(Object obj) {
+				return super.equals(obj);
+			}
+			
+			// Override hashCode method.
+			@Override
+			public int hashCode() {
+				return super.hashCode();
+			}
+
+			// Override toString method.
+			@Override
+			public String toString() {
+				return "Warrior " + super.toString();
+			}
 }
