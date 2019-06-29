@@ -52,7 +52,7 @@ public class Player extends User {
 			this.gold=gold;
 		}else {
 			String setGoldError= " You can't have negative gold";
-			throw new Exception(User.errorMessage + setGoldError);
+			throw new Exception(valueErrorMessage + setGoldError);
 		}
 	}
 	

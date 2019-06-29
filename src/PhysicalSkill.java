@@ -1,7 +1,6 @@
 public abstract class PhysicalSkill extends Ability {
 
-
-	private static String errorMessage = "Error: Invalid value.";
+	// Attributes
 	private int damage;
 	
 	// Constructors
@@ -24,8 +23,8 @@ public abstract class PhysicalSkill extends Ability {
 		if (damage > 0) {
 			this.damage = damage;			
 		} else {
-			String setDamgeError = " The spell damage must be higher than zero.";
-			throw new Exception(PhysicalSkill.errorMessage + setDamgeError);
+			String setDamgeError = "The spell damage must be higher than zero.";
+			throw new Exception(valueErrorMessage + setDamgeError);
 		}
 	}
 	

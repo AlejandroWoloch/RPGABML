@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public abstract class User {
+public abstract class User implements ISystemMessage {
 	// Attributes
 	private static int lastId = 0;
 	private int id;
@@ -8,7 +8,6 @@ public abstract class User {
 	private String username;
 	private String password;
 	private String email;
-	protected static final String errorMessage = "Error: Invalid value";
 	
 	// Constructor
 	public User(String name, String username, String email) {
@@ -72,7 +71,7 @@ public abstract class User {
 		if(name.length() > 0) {
 			this.name = name;			
 		} else {
-			System.out.println(User.errorMessage + "... Dude, please... Your fathers thought a name for you... Just use it");
+			System.out.println(valueErrorMessage + "... Dude, please... Your fathers thought a name for you... Just use it");
 		}
 	}
 
@@ -84,7 +83,7 @@ public abstract class User {
 		if(username.length() > 0) {			
 			this.username = username;
 		} else {
-			System.out.println(User.errorMessage + "... Dude, please... Create a username, don't be lazy e.e");
+			System.out.println(valueErrorMessage + "... Dude, please... Create a username, don't be lazy e.e");
 		}
 	}
 
@@ -96,7 +95,7 @@ public abstract class User {
 		if(username.length() > 0) {
 			this.password = password;
 		} else {
-			System.out.println(User.errorMessage + "... That is not a password. Or maybe yes, if you like or want to have huge security problems");
+			System.out.println(valueErrorMessage + "... That is not a password. Or maybe yes, if you like or want to have huge security problems");
 		}
 	}
 
@@ -108,7 +107,7 @@ public abstract class User {
 		if(email.length() > 0) {
 			this.email = email;
 		} else {
-			System.out.println(User.errorMessage + "... That is not even an email");
+			System.out.println(valueErrorMessage + "... That is not even an email");
 		}
 	}	
 }

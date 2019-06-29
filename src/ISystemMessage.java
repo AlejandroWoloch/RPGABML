@@ -2,5 +2,5 @@
 public interface ISystemMessage {
 
 	// Attributes
-	public final String valueError = "Error: Invalid value - ";
+	public final String valueErrorMessage = "Error: Invalid value - ";
 }
