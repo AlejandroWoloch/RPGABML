@@ -12,25 +12,25 @@ public class Player extends User {
 	private int gold; //Amount of gold the Player will have
 	
 	//Constructors
-	public Player(String name, String username, String password, String email) {
+	public Player(String name, String username, String password, String email) throws Exception {
 		super(name, username, password, email);
 		this.setGold(0);
 		this.team= null;
 	}
 
-	public Player(String name, String username, String email) {
+	public Player(String name, String username, String email) throws Exception {
 		super(name, username, email);
 		this.setGold(0);
 		this.team= null;
 	}
 
-	public Player(String name, String username, String password, String email, int gold) {
+	public Player(String name, String username, String password, String email, int gold) throws Exception {
 		super(name, username, password, email);
 		this.setGold(gold);
 		this.team= null;
 	}
 
-	public Player(String name, String username, String email, int gold) {
+	public Player(String name, String username, String email, int gold) throws Exception {
 		super(name, username, email);
 		this.setGold(gold);
 		this.team= null;
@@ -47,16 +47,12 @@ public class Player extends User {
 		return gold;
 	}
 
-	public void setGold(int gold) {
-		try {
-			if(gold>=0) {
-				this.gold=gold;
-			}else {
-				throw new Exception();
-			}
-		}
-		catch (Exception e){
-			System.out.println(errorMessage + " - Gold should be a positive value");
+	public void setGold(int gold) throws Exception {
+		if(gold>=0) {
+			this.gold=gold;
+		}else {
+			String setGoldError= " You can't have negative gold";
+			throw new Exception(User.errorMessage + setGoldError);
 		}
 	}
 	
