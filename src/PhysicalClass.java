@@ -4,7 +4,7 @@ public abstract class PhysicalClass extends PlayableCharacter{
 	//Atributes
 	private static final int maxStamina = 100;
 	private int stamina;
-	//protected ArrayList<PhysicalSkill> skillList;  //Comented until we implement Skills
+	private CRUD<PhysicalSkill> skills;  //Comented until we implement Skills
 	private int maxSkills;
 	private static String msgError = "Error: Invalid value.";
 	
@@ -40,28 +40,23 @@ public abstract class PhysicalClass extends PlayableCharacter{
 		return maxStamina;
 	}
 	
-	/*COMENTED UNTIL WE IMPLEMENT SKILLS
 	public ArrayList<PhysicalSkill> getSkillList() {
-		return this.skillList;
+		return this.skillList.getList();
 	}
+	
 	public abstract void lernNewSkill(PhysicalSkill newSkill);
 	
 	public void forgetSkill(int id) {
 		
-		PhysicalSkill toRemove = null;
-		
-		for (PhysicalSkill skill : this.getSkillList()) {
-			if(skill.getId() == id) {
-				toRemove = skill;
-			}
+		try {
+			this.skills.delete(id)
 		}
-		
-		if(toRemove != null) {
-			this.skillList.remove(toRemove);
+		catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	*/
+	
 	
 	
 	//toString and Equals
