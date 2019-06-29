@@ -9,16 +9,17 @@ public abstract class Ability {
 	protected final byte maxLevel = 50;
 	protected final byte baseCost = 2;
 	protected static final String errorMessage = "Error: Invalid value - ";
+	private String classUser; //Class that can use this ability
 	
 	
 	//Constructor
-	public Ability(String name, byte level) throws Exception {
+	public Ability(String name, byte level, String classUser) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setLevel(level);
 	}
 	
-	public Ability(String name) throws Exception {
+	public Ability(String name, String classUser) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setLevel((byte) 1);
@@ -69,6 +70,19 @@ public abstract class Ability {
 		}else {
 			String setLevelError= "The level should be between 1 and " + maxLevel;
 			throw new Exception(Ability.errorMessage + setLevelError);
+		}
+	}
+	
+	public String getClassUser() {
+		return this.classUser;
+	}
+	
+	public void setClassUser(String classUser) throws Exception {
+		if(classUser.length() > 0) {
+				this.classUser = classUser;		//To be changed for a comprobation of the names of the existing classes	
+		} else {
+				String setClassUserError= "The name of the Class that can use this Ability should have at least one character";
+				throw new Exception(Ability.errorMessage + setClassUserError);
 		}
 	}
 	
