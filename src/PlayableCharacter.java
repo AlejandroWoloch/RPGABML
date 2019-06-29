@@ -55,12 +55,7 @@ public abstract class PlayableCharacter extends Character{
 	private void levelUp() throws Exception{		//Used by setExperience method to levelUp if necessary
 		int newXP = this.getExperience() - this.getNextLevelXPNeeded();
 		this.setLevel((byte) (this.getLevel() + 1));
-		try {
-			this.setExperience(newXP);	
-		}
-		catch(Exception e) {
-			throw e;
-		}
+		this.setExperience(newXP);	
 	}
 	
 	public void gainExperience(int amount) throws Exception{		//This is the method that we should use outside the class to add experience to a Playable character
