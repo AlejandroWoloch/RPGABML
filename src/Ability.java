@@ -110,8 +110,8 @@ public abstract class Ability {
 	// Override toString method.
 	@Override
 	public String toString() {
-		String message= "Ability [Id: %d, Name: %s, Level: %d";
-		return String.format(message, this.getId(), this.getName(), this.getLevel());
+		String message= "Ability [Id: %d, Name: %s, Level: %d, Class User: %s]";
+		return String.format(message, this.getId(), this.getName(), this.getLevel(), this.getClassUser());
 	}
 
 	
