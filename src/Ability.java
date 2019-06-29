@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Objects;
 
 public abstract class Ability {
@@ -13,13 +12,13 @@ public abstract class Ability {
 	
 	
 	//Constructor
-	public Ability(String name, byte level) throws IOException {
+	public Ability(String name, byte level) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setLevel(level);
 	}
 	
-	public Ability(String name) throws IOException {
+	public Ability(String name) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setLevel((byte) 1);
@@ -49,16 +48,11 @@ public abstract class Ability {
 	}
 
 
-	public void setName(String name) throws IOException {
-		try {
-			if(name.length() > 0) {
+	public void setName(String name) throws Exception {
+		if(name.length() > 0) {
 				this.name = name;			
-			} else {
-				throw new IOException();
-			}
-		}
-		catch(IOException e) {
-			System.out.println(Ability.errorMessage + " - Name should have a content");
+		} else {
+				throw new Exception();
 		}
 	}
 
@@ -68,16 +62,11 @@ public abstract class Ability {
 	}
 
 
-	public void setLevel(byte level) {
-		try {
-			if(level>0 && level<=maxLevel) {
-				this.level=level;
-			}else {
-				throw new Exception();
-			}
-		}
-		catch(Exception e) {
-			System.out.println(Ability.errorMessage + " - The level asigned isn't inside the accepted values");
+	public void setLevel(byte level) throws Exception {
+		if(level>0 && level<=maxLevel) {
+			this.level=level;
+		}else {
+			throw new Exception();
 		}
 	}
 	
