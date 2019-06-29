@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public abstract class Ability {
+public abstract class Ability implements ISystemMessage {
 	//Attributes
 	private static int lastId = 0;
 	private int id;
@@ -8,7 +8,6 @@ public abstract class Ability {
 	private byte level;
 	protected final byte maxLevel = 50;
 	protected final byte baseCost = 2;
-	protected static final String errorMessage = "Error: Invalid value - ";
 	private String classUser; //Class that can use this ability
 	
 	
@@ -54,7 +53,7 @@ public abstract class Ability {
 				this.name = name;			
 		} else {
 				String setNameError= "The name should have at least one character";
-				throw new Exception(Ability.errorMessage + setNameError);
+				throw new Exception(valueErrorMessage + setNameError);
 		}
 	}
 
@@ -69,7 +68,7 @@ public abstract class Ability {
 			this.level=level;
 		}else {
 			String setLevelError= "The level should be between 1 and " + maxLevel;
-			throw new Exception(Ability.errorMessage + setLevelError);
+			throw new Exception(valueErrorMessage + setLevelError);
 		}
 	}
 	
@@ -82,7 +81,7 @@ public abstract class Ability {
 				this.classUser = classUser;		//To be changed for a comprobation of the names of the existing classes	
 		} else {
 				String setClassUserError= "The name of the Class that can use this Ability should have at least one character";
-				throw new Exception(Ability.errorMessage + setClassUserError);
+				throw new Exception(valueErrorMessage+ setClassUserError);
 		}
 	}
 	

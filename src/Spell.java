@@ -1,7 +1,6 @@
 public abstract class Spell extends Ability {
 
 	// Attributes
-	private static String errorMessage = "Error: Invalid value.";
 	private int damage;
 	
 	// Constructors
@@ -46,8 +45,8 @@ public abstract class Spell extends Ability {
 		if (damage > 0) {
 			this.damage = damage;			
 		} else {
-			String setManaError = " The spell damage must be higher than zero.";
-			throw new Exception(Spell.errorMessage + setManaError);
+			String setManaError = "The spell damage must be higher than zero.";
+			throw new Exception(valueErrorMessage + setManaError);
 		}
 	}	
 }
