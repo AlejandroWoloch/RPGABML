@@ -1,21 +1,17 @@
-public class Spell extends Ability {
+public abstract class Spell extends Ability {
 
 	// Attributes
-	private static int lastId = 0;
 	private static String errorMessage = "Error: Invalid value.";
-	private int id;
 	private int damage;
 	
 	// Constructors
 	public Spell(int damage, String name, String classUser) throws Exception {
 		super(name, classUser);
-		this.setId();
 		this.setDamage(damage);
 	}
 	
 	public Spell(String name, byte level, String classUser, int damage) throws Exception {
 		super(name, level, classUser);
-		this.setId();
 		this.setDamage(damage);
 	}
 	
@@ -40,25 +36,8 @@ public class Spell extends Ability {
 		return base.concat(String.format(messageFmt, getDamage()));
 	}
 	
-	@Override
-	public byte calculateCost() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
+
 	// Getters and Setters
-	private static int getLastId() {
-		return ++Spell.lastId;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	private void setId() {
-		this.id = Spell.getLastId();
-	}
-
 	public int getDamage() {
 		return damage;
 	}
