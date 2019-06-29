@@ -3,7 +3,7 @@ import java.util.List;
 
 public class ABML<T> {
 
-	    List<T> list= new ArrayList<T>(); //Se instancia en el constructor
+	    List<T> list = null; //Se instancia en el constructor
 	    
 	    void list(){
 	        if(! list.isEmpty()) {
