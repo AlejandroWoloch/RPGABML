@@ -1,8 +1,7 @@
-import java.util.Objects;
 
 public abstract class PlayableCharacter extends Character{
 
-	//Atributes
+	//Attributes
 	private static byte baseForNextLevelXP = 100; 	//Used for levelingUp
 	private int experience;					//Current XP, can't exceed experience for next level.
 	

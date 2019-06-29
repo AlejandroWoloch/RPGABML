@@ -13,7 +13,7 @@ public abstract class Character implements ISystemMessage{
 	private String name;
 	
 	// Constructor
-	public Character(byte level, String name) {
+	public Character(byte level, String name) throws Exception {
 		this.setId();
 		this.setLevel(level);
 		this.setName(name);
@@ -87,11 +87,12 @@ public abstract class Character implements ISystemMessage{
 		return level;
 	}
 
-	public void setLevel(byte level) {
+	public void setLevel(byte level) throws Exception {
 		if((level > 0) && (level < this.getMaxLevel())) {			
 			this.level = level;
 		} else {
-			System.out.println(valueErrorMessage + ", level must be higher than zero.");
+			String setLevelError = "Level must be higher than zero.";
+			throw new Exception(valueErrorMessage + setLevelError);
 		}
 	}
 
@@ -99,11 +100,12 @@ public abstract class Character implements ISystemMessage{
 		return maxLevel;
 	}
 
-	public void setMaxLevel(byte maxLevel) {
+	public void setMaxLevel(byte maxLevel) throws Exception {
 		if(maxLevel > 1) {
 			Character.maxLevel = maxLevel;			
 		} else {
-			System.out.println(valueErrorMessage + ", max level must be higher than one.");
+			String setMaxLevelError = "Max level must be higher than one.";
+			throw new Exception(valueErrorMessage + setMaxLevelError);
 		}
 	}
 
@@ -111,11 +113,12 @@ public abstract class Character implements ISystemMessage{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws Exception {
 		if(name.length() > 0) {
 			this.name = name;
 		} else {
-			System.out.println(valueErrorMessage + "... Dude, please... Create a name, don't be lazy");
+			String setNameError = "This is not a valid name";
+			throw new Exception(valueErrorMessage + setNameError);
 		}
 	}
 
@@ -123,11 +126,12 @@ public abstract class Character implements ISystemMessage{
 		return baseAttack;
 	}
 
-	public static void setBaseAtack(short baseAttack) {
+	public static void setBaseAtack(short baseAttack) throws Exception {
 		if(baseAttack > 0) {			
 			Character.baseAttack = baseAttack;
 		} else {
-			System.out.println(valueErrorMessage + ", base Attack must be higher than zero.");
+			String setBaseAttackError = "Base Attack must be higher than zero.";
+			throw new Exception(valueErrorMessage + setBaseAttackError);
 		}
 	}
 
@@ -135,11 +139,12 @@ public abstract class Character implements ISystemMessage{
 		return baseDefense;
 	}
 
-	public static void setBaseDefense(short baseDefense) {
+	public static void setBaseDefense(short baseDefense) throws Exception {
 		if(baseDefense > 0) {			
 			Character.baseDefense = baseDefense;
 		} else {
-			System.out.println(valueErrorMessage + ", base Defense must be higher than zero.");
+			String setBaseDefenseError = "Base Defense must be higher than zero.";
+			throw new Exception(valueErrorMessage + setBaseDefenseError);
 		}
 	}
 
@@ -147,11 +152,12 @@ public abstract class Character implements ISystemMessage{
 		return baseHp;
 	}
 
-	public static void setBaseHp(short baseHp) {
+	public static void setBaseHp(short baseHp) throws Exception {
 		if(baseHp > 0) {			
 			Character.baseHp = baseHp;
 		} else {
-			System.out.println(valueErrorMessage + ", base HP must be higher than zero.");
+			String setBaseHPError = "Base HP must be higher than zero.";
+			throw new Exception(valueErrorMessage + setBaseHPError);
 		}
 	}
 

@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public abstract class User implements ISystemMessage {
+
 	// Attributes
 	private static int lastId = 0;
 	private int id;
@@ -10,14 +11,14 @@ public abstract class User implements ISystemMessage {
 	private String email;
 	
 	// Constructor
-	public User(String name, String username, String email) {
+	public User(String name, String username, String email) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setUsername(username);
 		this.setEmail(email);
 	}
 	
-	public User(String name, String username, String password, String email) {
+	public User(String name, String username, String password, String email) throws Exception {
 		this.setId();
 		this.setName(name);
 		this.setUsername(username);
@@ -67,11 +68,12 @@ public abstract class User implements ISystemMessage {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws Exception {
 		if(name.length() > 0) {
 			this.name = name;			
 		} else {
-			System.out.println(valueErrorMessage + "... Dude, please... Your fathers thought a name for you... Just use it");
+			String setNameError = "This is not a valid name";
+			throw new Exception(valueErrorMessage + setNameError);
 		}
 	}
 
@@ -79,11 +81,12 @@ public abstract class User implements ISystemMessage {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(String username) throws Exception {
 		if(username.length() > 0) {			
 			this.username = username;
 		} else {
-			System.out.println(valueErrorMessage + "... Dude, please... Create a username, don't be lazy e.e");
+			String setUsernameError = "This is not a valid username";
+			throw new Exception(valueErrorMessage + setUsernameError);
 		}
 	}
 
@@ -91,11 +94,12 @@ public abstract class User implements ISystemMessage {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password) throws Exception {
 		if(username.length() > 0) {
 			this.password = password;
 		} else {
-			System.out.println(valueErrorMessage + "... That is not a password. Or maybe yes, if you like or want to have huge security problems");
+			String setPasswordError = "This is not a valid password";
+			throw new Exception(valueErrorMessage + setPasswordError);
 		}
 	}
 
@@ -103,11 +107,12 @@ public abstract class User implements ISystemMessage {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) throws Exception {
 		if(email.length() > 0) {
 			this.email = email;
 		} else {
-			System.out.println(valueErrorMessage + "... That is not even an email");
+			String setEmailError = "This is not a valid email";
+			throw new Exception(valueErrorMessage + setEmailError);
 		}
 	}	
 }

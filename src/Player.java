@@ -6,7 +6,6 @@ public class Player extends User {
 	 */
 	
 	//Attributes
-	//private ABML<item> inventory; //Collections of the items that the player has.
 	private PlayableCharacter team; //Character that the Player will use.
 	//private ABML<PlayableCharacter team; //If there's time, there'll be a Collections of characters that the Player could use.
 	private int gold; //Amount of gold the Player will have
@@ -70,7 +69,7 @@ public class Player extends User {
 	//public void administrateInventory() {} //Not going to use this for now
 
 
-	//To String, Equals, Hashcode.
+	//To String, Equals, HashCode.
 	
 	@Override
 	public String toString() {
