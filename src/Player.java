@@ -83,11 +83,7 @@ public class Player extends User {
 	}
 	
 	public boolean equals(Object obj) {
-		if (obj != null && obj.getClass().isInstance(Player.class)) {
-			return ((User) obj).getId() == this.getId();
-		} else {
-			return false;
-		}
+		return super.equals(obj);
 	}
 	
 	@Override
