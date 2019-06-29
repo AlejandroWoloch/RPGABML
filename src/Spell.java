@@ -7,14 +7,14 @@ public class Spell extends Ability {
 	private int damage;
 	
 	// Constructors
-	public Spell(int damage, String name) throws Exception {
-		super(name);
+	public Spell(int damage, String name, String classUser) throws Exception {
+		super(name, classUser);
 		this.setId();
 		this.setDamage(damage);
 	}
 	
-	public Spell(String name, byte level, int damage) throws Exception {
-		super(name, level);
+	public Spell(String name, byte level, String classUser, int damage) throws Exception {
+		super(name, level, classUser);
 		this.setId();
 		this.setDamage(damage);
 	}
