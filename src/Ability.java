@@ -8,7 +8,7 @@ public abstract class Ability {
 	private byte level;
 	protected final byte maxLevel = 50;
 	protected final byte baseCost = 2;
-	protected static final String errorMessage = "Error: Invalid value";
+	protected static final String errorMessage = "Error: Invalid value - ";
 	
 	
 	//Constructor
@@ -52,7 +52,8 @@ public abstract class Ability {
 		if(name.length() > 0) {
 				this.name = name;			
 		} else {
-				throw new Exception();
+				String setNameError= "The name should have at least one character";
+				throw new Exception(Ability.errorMessage + setNameError);
 		}
 	}
 
@@ -66,7 +67,8 @@ public abstract class Ability {
 		if(level>0 && level<=maxLevel) {
 			this.level=level;
 		}else {
-			throw new Exception();
+			String setLevelError= "The level should be between 1 and " + maxLevel;
+			throw new Exception(Ability.errorMessage + setLevelError);
 		}
 	}
 	
