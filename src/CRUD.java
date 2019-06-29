@@ -26,11 +26,7 @@ public class CRUD<T extends Base> {
 	    
 	    void delete(int id) {
 	    	T obj=find(id);
-	    	if(obj!=null) {
-	    		list.remove(obj);
-	    	}else {
-	    		throw new Exception("There's no element with this ID");
-	    	}
+	    	list.remove(obj);
 	    }
 	    
 	    T find(int id) {
@@ -43,6 +39,9 @@ public class CRUD<T extends Base> {
 	    		}
 	    	}else {
 	    		throw new NullPointerException("The list is empty");
+	    	}
+	    	if (obj==null) {
+	    		throw new Exception("There's no element with this ID");
 	    	}
 	    	return obj;
 	    }
