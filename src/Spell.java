@@ -1,23 +1,21 @@
-import java.util.Objects;
-
-public class Spell {
+public class Spell extends Ability {
 
 	// Attributes
 	private static int lastId = 0;
 	private static String errorMessage = "Error: Invalid value.";
 	private int id;
-	private String name;
 	private int damage;
 	
 	// Constructors
-	public Spell(int damage) throws Exception {
+	public Spell(int damage, String name) throws Exception {
+		super(name);
 		this.setId();
 		this.setDamage(damage);
 	}
 	
-	public Spell(String name, int damage) throws Exception {
+	public Spell(String name, byte level, int damage) throws Exception {
+		super(name, level);
 		this.setId();
-		this.setName(name);
 		this.setDamage(damage);
 	}
 	
@@ -25,23 +23,27 @@ public class Spell {
 	// Override equals method.
 	@Override
 	public boolean equals(Object obj) {
-		if (obj != null && obj.getClass().isInstance(Spell.class)) {
-			return ((Spell) obj).getId() == this.getId();
-		} else {
-			return false;
-		}
-	}
+        return super.equals(obj);
+    }
 	
 	// Override hashCode method.
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return super.hashCode();
 	}
 
 	// Override toString method.
 	@Override
 	public String toString() {
-		return "Spell [Id = " + getId() + " ]";
+		String base = super.toString();
+		String messageFmt = "\n=> Spell\n[Damage: %d]";
+		return base.concat(String.format(messageFmt, getDamage()));
+	}
+	
+	@Override
+	public byte calculateCost() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	// Getters and Setters
@@ -57,19 +59,6 @@ public class Spell {
 		this.id = Spell.getLastId();
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) throws Exception {
-		if (name.length() > 0) {
-			this.name = name;			
-		} else {
-			String setManaError = " The spell should have a name";
-			throw new Exception(Spell.errorMessage + setManaError);
-		}
-	}
-
 	public int getDamage() {
 		return damage;
 	}
@@ -81,7 +70,5 @@ public class Spell {
 			String setManaError = " The spell damage must be higher than zero.";
 			throw new Exception(Spell.errorMessage + setManaError);
 		}
-	}
-	
-	
+	}	
 }
