@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public abstract class Character {
+public abstract class Character implements ISystemMessage{
 
 	// Attributes
 	private static int lastId = 0;
@@ -11,7 +11,6 @@ public abstract class Character {
 	private static short baseDefense = 2;
 	private static short baseHp = 50;
 	private String name;
-	protected static final String errorMessage = "Error: Invalid value";
 	
 	// Constructor
 	public Character(byte level, String name) {
@@ -92,7 +91,7 @@ public abstract class Character {
 		if((level > 0) && (level < this.getMaxLevel())) {			
 			this.level = level;
 		} else {
-			System.out.println(Character.errorMessage + ", level must be higher than zero.");
+			System.out.println(valueErrorMessage + ", level must be higher than zero.");
 		}
 	}
 
@@ -104,7 +103,7 @@ public abstract class Character {
 		if(maxLevel > 1) {
 			Character.maxLevel = maxLevel;			
 		} else {
-			System.out.println(Character.errorMessage + ", max level must be higher than one.");
+			System.out.println(valueErrorMessage + ", max level must be higher than one.");
 		}
 	}
 
@@ -116,7 +115,7 @@ public abstract class Character {
 		if(name.length() > 0) {
 			this.name = name;
 		} else {
-			System.out.println(Character.errorMessage + "... Dude, please... Create a name, don't be lazy");
+			System.out.println(valueErrorMessage + "... Dude, please... Create a name, don't be lazy");
 		}
 	}
 
@@ -128,7 +127,7 @@ public abstract class Character {
 		if(baseAttack > 0) {			
 			Character.baseAttack = baseAttack;
 		} else {
-			System.out.println(Character.errorMessage + ", base Attack must be higher than zero.");
+			System.out.println(valueErrorMessage + ", base Attack must be higher than zero.");
 		}
 	}
 
@@ -140,7 +139,7 @@ public abstract class Character {
 		if(baseDefense > 0) {			
 			Character.baseDefense = baseDefense;
 		} else {
-			System.out.println(Character.errorMessage + ", base Defense must be higher than zero.");
+			System.out.println(valueErrorMessage + ", base Defense must be higher than zero.");
 		}
 	}
 
@@ -152,7 +151,7 @@ public abstract class Character {
 		if(baseHp > 0) {			
 			Character.baseHp = baseHp;
 		} else {
-			System.out.println(Character.errorMessage + ", base HP must be higher than zero.");
+			System.out.println(valueErrorMessage + ", base HP must be higher than zero.");
 		}
 	}
 

@@ -5,7 +5,6 @@ public abstract class PlayableCharacter extends Character{
 	//Atributes
 	private static byte baseForNextLevelXP = 100; 	//Used for levelingUp
 	private int experience;					//Current XP, can't exceed experience for next level.
-	private static final String errorMsg = "Error. Invalid value";
 	
 	
 	//Constructors
@@ -29,7 +28,7 @@ public abstract class PlayableCharacter extends Character{
 		}
 		else {
 			String xpError = "You can't set experience lower than 0";
-			throw new Exception(PlayableCharacter.errorMsg + xpError);
+			throw new Exception(valueErrorMessage + xpError);
 		}
 		
 	}
@@ -64,7 +63,7 @@ public abstract class PlayableCharacter extends Character{
 		}
 		else {
 			String xpError = "You can't earn negative XP";
-			throw new Exception(PlayableCharacter.errorMsg + xpError);
+			throw new Exception(valueErrorMessage + xpError);
 		}
 	}
 	
