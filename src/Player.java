@@ -74,7 +74,7 @@ public class Player extends User {
 	
 	@Override
 	public String toString() {
-		String message= "/nPlayer [Character name: %s, Amount of Gold: %d";
+		String message= "/nPlayer [Character name: %s, Amount of Gold: %d]";
 		return String.format(super.toString() + message, team.getName(), this.getGold());
 	}
 	
