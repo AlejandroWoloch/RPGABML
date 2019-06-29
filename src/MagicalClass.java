@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public abstract class MagicalClass extends PlayableCharacter {
 
  	// Attributes
-	private final int maxMana = 100;
+	private static final int maxMana = 100;
 	private int mana;
 	private int inteligence;
-	protected ArrayList<Spell> spellList;
+	protected ArrayList<Spell> spellList; // CRUD<Spell>
 	protected static final String errorMessage = "Error: Invalid value";
 
 	//Constructors
@@ -14,9 +14,16 @@ public abstract class MagicalClass extends PlayableCharacter {
 		super(name);
 		this.setMana(mana);
 		this.setInteligence(inteligence);
+		this.spellList.init();
 	}
 
- 	public MagicalClass(byte level, String name, int experience, int mana, int inteligence) throws Exception {
+ 	public MagicalClass(
+ 			byte level,
+ 			int experience,
+ 			int mana,
+ 			int inteligence,
+ 			String name
+ 	) throws Exception {
 		super(level,name,experience);
 		this.setMana(mana);
 		this.setInteligence(inteligence);
@@ -26,15 +33,11 @@ public abstract class MagicalClass extends PlayableCharacter {
  	public abstract void lernNewSpell(Spell newSpell);
 
 	public void forgetSkill(int id) {
-		Spell toRemove = null;
-		for (Spell spell : this.getSpellList()) {
-			if(spell.getId() == id) {
-				toRemove = spell;
-			}
-		}
-		if(toRemove != null) {
-			this.spellList.remove(toRemove);
-		}
+		try {
+			this.spellList.delete(id);
+        }catch (Exception error){
+            throw error;
+        }
 	}
  	
 	// Override equals method.
@@ -83,7 +86,12 @@ public abstract class MagicalClass extends PlayableCharacter {
 		return inteligence;
 	}
 
-	public void setInteligence(int inteligence) {
-		this.inteligence = inteligence;
+	public void setInteligence(int inteligence) throws Exception {
+		if (inteligence > 0) {
+			this.inteligence = inteligence;			
+		} else {
+			String setInteligenceError = "Mana should be higher than zero and smaller than max Mana";
+			throw new Exception(MagicalClass.errorMessage + setInteligenceError);
+		}
 	}
 }
