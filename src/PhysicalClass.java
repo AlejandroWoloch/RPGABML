@@ -21,13 +21,6 @@ public abstract class PhysicalClass extends PlayableCharacter{
 		this.setStamina(stamina);
 	}
 	
-	/* COMENTED UNTIL WE IMPLEMENT ITEMS
-	public PhysicalClass(byte level, String name, int experience, Weapon weapon, Armor armor, int stamina) {  //Used to instance with information from JSON
-		super(level,name,experience,weapon,armor);
-		this.setStamina(stamina);
-	}
-	*/
-	
 	//Getters and Setters
 	public void setStamina(int stamina) throws Exception{
 		if(stamina >= 0 && stamina <= maxStamina) {
@@ -51,7 +44,6 @@ public abstract class PhysicalClass extends PlayableCharacter{
 	public ArrayList<PhysicalSkill> getSkillList() {
 		return this.skillList;
 	}
-	
 	public abstract void lernNewSkill(PhysicalSkill newSkill);
 	
 	public void forgetSkill(int id) {

@@ -11,11 +11,6 @@ public class Warrior extends PhysicalClass{
 		super(level, name,experience,stamina);
 	}
 	
-	/*COMENTED UNTIL WE IMPLEMENT ITEMS
-	public Warrior(byte level, String name, int experience, Weapon weapon, Armor armor, int stamina) {  //Used to instance with information from JSON
-		super(level,name,experience,weapon,armor,stamina);
-	}
-	*/
 	/*COMENTED UNTIL WE IMPLEMENT SKILLS AND ITEMS
 	@Override
 	public void lernNewSkill(PhysicalSkill newSkill) {
@@ -27,12 +22,6 @@ public class Warrior extends PhysicalClass{
 		}
 	}
 	
-	@Override
-	public void equipWeapon(Weapon weapon) {
-		if(weapon != null && weapon instanceof Sword) {
-			this.equipedWeapon = weapon;
-		}
-	}
 	*/
 	
 	//toString and Equals

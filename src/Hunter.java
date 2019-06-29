@@ -10,12 +10,6 @@ public class Hunter extends PhysicalClass{
 	public Hunter(byte level, String name, int experience, int stamina) throws Exception{ //Used to instance characters with data from JSON
 		super(level, name,experience,stamina);
 	}
-	
-	/*COMENTED UNTIL WE IMPLEMENT ITEMS
-	public Hunter(byte level, String name, int experience, Weapon weapon, Armor armor, int stamina) {  //Used to instance with information from JSON
-		super(level,name,experience,weapon,armor,stamina);
-	}
-	*/
 	/*COMENTED UNTIL WE IMPLEMENT SKILLS AND ITEMS
 	@Override
 	public void lernNewSkill(PhysicalSkill newSkill) {
@@ -24,13 +18,6 @@ public class Hunter extends PhysicalClass{
 				if(newSkill.getLevelRequired() <= this.getLevel())
 					this.getSkillList().add(newSkill);
 			}
-		}
-	}
-	
-	@Override
-	public void equipWeapon(Weapon weapon) {
-		if(weapon != null && weapon instanceof Sword) {
-			this.equipedWeapon = weapon;
 		}
 	}
 	*/
