@@ -59,7 +59,7 @@ public class CRUD<T extends Base> {
 	     * DELETE method
 	     * Delete an Object based on its id
 	     */
-	    void delete(int id) {
+	    void delete(int id) throws Exception {
 	    	T obj=find(id);
 	    	list.remove(obj);
 	    }
