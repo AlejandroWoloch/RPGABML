@@ -7,13 +7,12 @@ public class CRUD<T extends Base> {
 	    List<T> list = null;
 	    
 	    // Methods
-	    
 	    // CRUD methods
 	    /**
 	     * CREATE method
 	     * Adds an Object in the List
 	     */
-	    List<T> create(T obj) {
+	    List<T> create(T obj) throws Exception {
 	    	if(obj != null) {
 	    		list.add(obj);
 	        } else {
@@ -25,7 +24,7 @@ public class CRUD<T extends Base> {
 	     * READ method
 	     * Show the content of the List
 	     */
-	    void read(){
+	    void read() throws Exception {
 	        if(!list.isEmpty()) {
 	        	for (T t : list) {
 					System.out.println(t.toString() + "\n");
@@ -34,6 +33,22 @@ public class CRUD<T extends Base> {
 	        else {
 	        	throw new NullPointerException("The list is empty.");
 	        }
+	    }
+	    
+	    /**
+	     * UPDATE method
+	     * Updates the value of the T object on the List
+	     */
+	    void update(T obj) throws Exception {
+	    	if(!list.isEmpty()) {
+	    		for(T t: list) {
+	    			if(t.getId() == obj.getId()) {
+	    				t = obj;
+	    			}
+	    		}
+	    	}else {
+	    		throw new NullPointerException("The list is empty, you can not update an object that not exist");
+	    	}
 	    }
 	    
 	    /**
@@ -51,7 +66,7 @@ public class CRUD<T extends Base> {
 	     * GETLIST method
 	     * returns the List
 	     */
-	    List<T> getList(){
+	    List<T> getList() {
 	    	return list;
 	    }
 	    
@@ -67,7 +82,7 @@ public class CRUD<T extends Base> {
 	     * FIND method
 	     * Find an Object based on its id
 	     */
-	    T find(int id) {
+	    T find(int id) throws Exception {
 	    	T obj=null;
 	    	if(!list.isEmpty()) {
 	    		for(T t: list) {
