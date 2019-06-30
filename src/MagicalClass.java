@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class MagicalClass extends PlayableCharacter {
 
@@ -6,7 +7,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 	private static final int maxMana = 100;
 	private int mana;
 	private int inteligence;
-	protected ArrayList<Spell> spellList; // CRUD<Spell>
+	protected CRUD<Spell> spellList; // CRUD<Spell>
 	protected static final String errorMessage = "Error: Invalid value";
 
 	//Constructors
@@ -14,7 +15,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 		super(name);
 		this.setMana(mana);
 		this.setInteligence(inteligence);
-		this.spellList.init();
+		this.spellList.initialize();
 	}
 
  	public MagicalClass(
@@ -27,10 +28,12 @@ public abstract class MagicalClass extends PlayableCharacter {
 		super(level,name,experience);
 		this.setMana(mana);
 		this.setInteligence(inteligence);
+		this.spellList.initialize();
 	}
  	
  	// Methods
  	public abstract void lernNewSpell(Spell newSpell);
+ 	public abstract void updateSkill(Spell spell);
 
 	public void forgetSkill(int id) {
 		try {
@@ -39,7 +42,7 @@ public abstract class MagicalClass extends PlayableCharacter {
             throw error;
         }
 	}
- 	
+	
 	// Override equals method.
 	@Override
 	public boolean equals(Object obj) {
@@ -78,8 +81,8 @@ public abstract class MagicalClass extends PlayableCharacter {
 		return maxMana;
 	}
 
- 	public ArrayList<Spell> getSpellList() {
-		return this.spellList;
+ 	public List<Spell> getSpellList() {
+		return spellList.getList();
 	}
 
 	public int getInteligence() {
