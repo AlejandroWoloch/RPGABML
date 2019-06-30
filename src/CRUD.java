@@ -24,15 +24,19 @@ public class CRUD<T extends Base> {
 	     * READ method
 	     * Show the content of the List
 	     */
-	    void read() throws Exception {
+	    String read(){
+	    	String msg = "";
+	    	
 	        if(!list.isEmpty()) {
 	        	for (T t : list) {
-					System.out.println(t.toString() + "\n");
+					msg += t.toString() + "\n";
 				}
 	        }
 	        else {
 	        	throw new NullPointerException("The list is empty.");
 	        }
+	        
+	        return msg;
 	    }
 	    
 	    /**
@@ -81,6 +85,7 @@ public class CRUD<T extends Base> {
 	    /**
 	     * FIND method
 	     * Find an Object based on its id
+	     * @throws Exception 
 	     */
 	    T find(int id) throws Exception {
 	    	T obj=null;
