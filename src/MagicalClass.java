@@ -1,13 +1,13 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MagicalClass extends PlayableCharacter {
 
- 	// Attributes
+	// Attributes
+	private static final long serialVersionUID = 1L;
 	private static final int maxMana = 100;
 	private int mana;
 	private int inteligence;
-	protected CRUD<Spell> spellList; // CRUD<Spell>
+	protected CRUD<Spell> spellList;
 	protected static final String errorMessage = "Error: Invalid value";
 
 	//Constructors
@@ -33,14 +33,10 @@ public abstract class MagicalClass extends PlayableCharacter {
  	
  	// Methods
  	public abstract void lernNewSpell(Spell newSpell);
- 	public abstract void updateSkill(Spell spell);
+ 	public abstract void updateSpell(Spell spell);
 
-	public void forgetSkill(int id) {
-		try {
-			this.spellList.delete(id);
-        }catch (Exception error){
-            throw error;
-        }
+	public void forgetSpell(int id) throws Exception {
+		this.spellList.delete(id);
 	}
 	
 	// Override equals method.
@@ -59,7 +55,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 	@Override
 	public String toString() {
 		String base = super.toString();
-		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d]";
+		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d, Spells\n" + this.spellList.read() + "]";
 		return base.concat(String.format(messageFmt, getMana(), getInteligence()));
 	}
 		
