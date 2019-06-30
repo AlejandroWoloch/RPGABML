@@ -10,29 +10,31 @@ public class Main {
 		String userFile = "Users";
 		try {
 
+			// This need would be the concrete character class
+
             // List of the Team Carlu!
-            List<PlayableCharacter> teamCarlu = new ArrayList<>();
+            /*List<PlayableCharacter> teamCarlu = new ArrayList<>();
             teamCarlu.add(new PlayableCharacter("Spiderman"));
             teamCarlu.add(new PlayableCharacter("Thanos"));
 
             // List of the Team Alee!
             List<PlayableCharacter> teamAlee = new ArrayList<>();
             teamAlee.add(new PlayableCharacter("Dr Strange"));
-            teamAlee.add(new PlayableCharacter("Antman"));
+            teamAlee.add(new PlayableCharacter("Antman"));*/
 
             // OBJECTS TO PERSIST
-            User carlos = new User("Carlos", "C4rl1t0x", "carlus@gmail.com");
-            User alejandro = new User("Alejandro", "ElAlePiola", "alee@gmail.com");
+            User carlos = new Player("Carlos", "C4rl1t0x", "carlus@gmail.com");
+            User alejandro = new Player("Alejandro", "ElAlePiola", "alee@gmail.com");
 
             // Array to Persist
-            List<User> employeesToPersist = new ArrayList<>();
-            employeesToPersist.add(carlos);
-            employeesToPersist.add(alejandro);
+            List<User> usersToPersist = new ArrayList<>();
+            usersToPersist.add(carlos);
+            usersToPersist.add(alejandro);
 
             PersistenceCollection<User> userPersistenceCollecion = new PersistenceCollection<>();
 
             // WRITE
-            userPersistenceCollecion.WriteIntoFile(employeesToPersist, userFile);
+            userPersistenceCollecion.WriteIntoFile(usersToPersist, userFile);
             Scanner scanner = new Scanner(System.in);
             String cont = scanner.next();
 
