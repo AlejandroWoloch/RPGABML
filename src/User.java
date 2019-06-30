@@ -1,7 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class User implements ISystemMessage {
-
+public abstract class User implements ISystemMessage, Serializable {
 	// Attributes
 	private static int lastId = 0;
 	private int id;
@@ -70,7 +70,7 @@ public abstract class User implements ISystemMessage {
 
 	public void setName(String name) throws Exception {
 		if(name.length() > 0) {
-			this.name = name;			
+			this.name = name;
 		} else {
 			String setNameError = "This is not a valid name";
 			throw new Exception(valueErrorMessage + setNameError);
@@ -82,7 +82,7 @@ public abstract class User implements ISystemMessage {
 	}
 
 	public void setUsername(String username) throws Exception {
-		if(username.length() > 0) {			
+		if(username.length() > 0) {
 			this.username = username;
 		} else {
 			String setUsernameError = "This is not a valid username";
