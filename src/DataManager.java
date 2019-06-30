@@ -9,16 +9,17 @@ import File.PersistenceCollection;
 
 public class DataManager {
 
+	/**
+	 * List of all the different clases that have instances that needs to be persisted
+	 */
 	enum Colection{
 		PLAYABLECHARACTER, NONPLAYABLECHARACTER, USER, SPELL, PHYSICALSKILL
 	}
+		
+	private static Map<Colection,String> fileNames = new HashMap<Colection,String>();	//File Names for persisted data, mapped to key from Colection enum
+	private static Map<Colection,List<Base>> data = new HashMap<Colection,List<Base>>();	//Data to persist, mapped to key from Colection enum
+	private static PersistenceCollection<Base> persistenceCollection = new PersistenceCollection<>(); //Used to persist data
 	
-	private static Map<Colection,String> fileNames = new HashMap<Colection,String>();
-	private static Map<Colection,List<Base>> data = new HashMap<Colection,List<Base>>();
-	private static PersistenceCollection<Base> persistenceCollection = new PersistenceCollection<>();
-	
-	
-	//Methods to initialize Data Manager
 	/**
 	 * Before using anything from DataManager you must call this method to initialize fileNames and data Maps.
 	 */
@@ -26,64 +27,113 @@ public class DataManager {
 		initFileNames();
 		initData();
 	}
+	
 	/**
 	 * Alternative method to initialize and get data from files all together
+	 * 
 	 * @throws Exception
+  	 * inherited from PersistenceCollection.ReadFromFile()
 	 */
 	public static void initAndFillDataManager() throws Exception{
 		initDataManager();
 		readAllFiles();
 	}
 	
+	/**
+	 * Creates all empty lists and maps them to each Colection enum
+	 */
 	private static void initData() {
 		for (Colection colection : Colection.values()) {
 			data.put(colection,new ArrayList<Base>());
 		}
 	}
 	
+	/**
+	 * Used to set the names of the files and map them to its corresponding Colection enum key
+	 */
 	private static void initFileNames() {		
 		for (Colection colection : Colection.values()) {
 			fileNames.put(colection,colection.toString());
 		}
 	}
 	
-	public static List<Base> getList(Colection colection) throws Exception {
+	/**
+	 * Used to get a single list from data hashmap
+	 * 
+	 * @param colection
+	 * key map for the list that you want to get
+	 * 
+	 * @return
+	 * Returns the list that is mapped to the colecion parameter int data hashmap
+	 */
+	public static List<Base> getList(Colection colection) {
 		return data.get(colection);
 	}
 	
+	/**
+	 * Writes all files with de information in data hasmap
+	 * 
+	 * @throws Exception
+  	 * inherited from PersistenceCollection.WriteIntoFile()
+	 */
 	public static void writeAllFiles() throws Exception{
 		for (Colection colection : Colection.values()) {
-			writeFileFromSinlgeData(colection);
+			writeSinlgeDataIntoFile(colection);
 		}
 	}
 	
-
+	/**
+	 * Fills data hashmap with all the infromation from files
+	 * 
+	 * @throws Exception
+  	 * inherited from PersistenceCollection.ReadFromFile()
+	 */
   	public static void readAllFiles() throws Exception{
   		for (Colection colection : Colection.values()) {
   			readDataFromSingleFile(colection);
 		}
   	}
   	
+  	/**
+  	 * Gets data from a single file and puts it into a list from the data hashmap
+  	 * 
+  	 * @param colection
+  	 * Indicates which list from data is going to be update with its corresponding file
+  	 * 
+  	 * @throws Exception
+  	 * inherited from PersistenceCollection.ReadFromFile()
+  	 */
   	private static void readDataFromSingleFile(Colection colection) throws Exception{
 		data.put(colection, persistenceCollection.ReadFromFile(fileNames.get(colection)));
   	}
-  	
-  	private static void writeFileFromSinlgeData(Colection colection) throws Exception{
+  		
+  	/**
+  	 * Writes a single file with a single list of data hashmap
+  	 * @param colection
+  	 * Used to indicate which list is going to be write in its corresponding file
+  	 * 
+  	 * @throws Exception
+  	 * inherited from PersistenceCollection.WriteIntoFile()
+  	 */
+  	private static void writeSinlgeDataIntoFile(Colection colection) throws Exception{
   		persistenceCollection.WriteIntoFile(data.get(colection), fileNames.get(colection));
   	}
-	
-	/* 
-	 * public static String getFile(Colection colection)
-   	 * 
-	 */
-	
+  	
+  	/**
+  	 * Used to test DataManager
+  	 * Shows all the fileNames
+  	 */
 	public static void show() {
 		for (Colection colection : Colection.values()) {
 			System.out.println(fileNames.get(colection));
 		}
 	}
 	
-	public static String serch(Colection index) {
-		return fileNames.get(index);
+	/**
+  	 * Used to test DataManager
+  	 * Shows the file's name mapped to the Colection enum key
+  	 */
+	public static String serch(Colection colection) {
+		return fileNames.get(colection);
 	}
 }
