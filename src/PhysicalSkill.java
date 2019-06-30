@@ -1,6 +1,7 @@
 public abstract class PhysicalSkill extends Ability {
 
 	// Attributes
+	private static final long serialVersionUID = 1L;
 	private int damage;
 	
 	// Constructors

@@ -1,6 +1,7 @@
 public class NonPlayableCharacter extends Character {
 	
 	// Attributes
+	private static final long serialVersionUID = 1L;
 	private int expRewarded;
 	
 	// Constructor

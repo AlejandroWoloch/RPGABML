@@ -5,6 +5,7 @@ import java.util.Objects;
 public abstract class Character extends Base implements ISystemMessage, Serializable {
 
 	// Attributes
+	private static final long serialVersionUID = 1L;
 	private static int lastId = 0;
 	private int id;
 	private byte level;
