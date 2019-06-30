@@ -2,6 +2,7 @@
 public abstract class PlayableCharacter extends Character{
 
 	//Attributes
+	private static final long serialVersionUID = 1L;
 	private static byte baseForNextLevelXP = 100; 	//Used for levelingUp
 	private int experience;					//Current XP, can't exceed experience for next level.
 	

@@ -6,6 +6,7 @@ public class Player extends User {
 	 */
 	
 	//Attributes
+	private static final long serialVersionUID = 1L;
 	private PlayableCharacter character; //Character that the Player will use.
 	//private ABML<PlayableCharacter team; //If there's time, there'll be a Collections of characters that the Player could use.
 	private int gold; //Amount of gold the Player will have
