@@ -4,11 +4,11 @@ public class NonPlayableCharacter extends Character {
 	private int expRewarded;
 	
 	// Constructor
-	public NonPlayableCharacter(String name) {
+	public NonPlayableCharacter(String name) throws Exception {
 		super((byte) 1, name);
 	}
 	
-	public NonPlayableCharacter(byte level, String name) {
+	public NonPlayableCharacter(byte level, String name) throws Exception {
 		super(level, name);
 	}
 	
