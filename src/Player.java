@@ -6,7 +6,7 @@ public class Player extends User {
 	 */
 	
 	//Attributes
-	private PlayableCharacter team; //Character that the Player will use.
+	private PlayableCharacter character; //Character that the Player will use.
 	//private ABML<PlayableCharacter team; //If there's time, there'll be a Collections of characters that the Player could use.
 	private int gold; //Amount of gold the Player will have
 	
@@ -14,32 +14,32 @@ public class Player extends User {
 	public Player(String name, String username, String password, String email) throws Exception {
 		super(name, username, password, email);
 		this.setGold(0);
-		this.team= null;
+		this.character= null;
 	}
 
 	public Player(String name, String username, String email) throws Exception {
 		super(name, username, email);
 		this.setGold(0);
-		this.team= null;
+		this.character= null;
 	}
 
 	public Player(String name, String username, String password, String email, int gold) throws Exception {
 		super(name, username, password, email);
 		this.setGold(gold);
-		this.team= null;
+		this.character= null;
 	}
 
 	public Player(String name, String username, String email, int gold) throws Exception {
 		super(name, username, email);
 		this.setGold(gold);
-		this.team= null;
+		this.character= null;
 	}
 
 	
 	//Getters and Setters
 
-	public PlayableCharacter getTeam() {
-		return team;
+	public PlayableCharacter getCharacter() {
+		return character;
 	}
 
 	public int getGold() {
@@ -73,8 +73,12 @@ public class Player extends User {
 	
 	@Override
 	public String toString() {
-		String message= "/nPlayer [Character name: %s, Amount of Gold: %d]";
-		return String.format(super.toString() + message, team.getName(), this.getGold());
+		String message= "\nPlayer [Character name: %s, Amount of Gold: %d]";
+		String showCharacter= "none";
+		if(this.getCharacter() != null) {
+			showCharacter = this.getCharacter().getName();
+		}
+		return String.format(super.toString() + message, showCharacter, this.getGold());
 	}
 	
 	public boolean equals(Object obj) {

@@ -41,9 +41,9 @@ public class Main {
             // READ
             List<User> usersFromFile = new ArrayList<>();
             usersFromFile = userPersistenceCollecion.ReadFromFile(userFile);
-            for(User emp : usersFromFile){
+            for(User user : usersFromFile){
                 System.out.println("======================================================================");
-                System.out.println(emp.toString());
+                System.out.println(user.toString());
                 //Metodo del vendedor para listar todos los celulares, hecho para evitar hacer otro foreach y ver todos de forma mas simple
                 //((Seller)emp).showCellPhones();
             }
