@@ -12,7 +12,7 @@ public class CRUD<T extends Base> {
 	     * CREATE method
 	     * Adds an Object in the List
 	     */
-	    List<T> create(T obj) throws Exception {
+	    void create(T obj) throws Exception {
 	    	if(obj != null) {
 	    		list.add(obj);
 	        } else {
@@ -42,7 +42,7 @@ public class CRUD<T extends Base> {
 	    void update(T obj) throws Exception {
 	    	if(!list.isEmpty()) {
 	    		for(T t: list) {
-	    			if(t.getId() == obj.getId()) {
+	    			if(t.equals(obj)) {
 	    				t = obj;
 	    			}
 	    		}
