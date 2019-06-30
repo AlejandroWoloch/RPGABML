@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class User implements ISystemMessage, Serializable {
+
+public abstract class User extends Base implements ISystemMessage, Serializable {
 	// Attributes
 	private static int lastId = 0;
 	private int id;

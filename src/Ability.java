@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Ability implements ISystemMessage, Serializable {
+
+public abstract class Ability extends Base implements ISystemMessage, Serializable {
 	//Attributes
 	private static int lastId = 0;
 	private int id;
