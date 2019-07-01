@@ -6,11 +6,15 @@ public class ConsoleMainMenu implements ISystemMessage{
 	//attributes
 	private byte op;
 	private Scanner sc;
+	private CRUD<User> users=null;
 	
 	//Constructor
 	public ConsoleMainMenu() {
 		sc= new Scanner(System.in);
+		users= new CRUD<User>();
 		//Load Players and Admins from files
+		DataManager.initDataManager();
+		//users=DataManager.getList(USER);
 	}
 	
 	//Methods
@@ -64,16 +68,16 @@ public class ConsoleMainMenu implements ISystemMessage{
 	public void createAccount() throws Exception {
 		String name, username, password, email;
 		System.out.println("Ingress username: ");
-		username=sc.nextLine();
+		username=validatingStrings();
 		//Validation for the Username, for the correct length and check if it's already in the system
 		System.out.println("Ingress password: ");
-		password=sc.nextLine();
+		password=validatingStrings();
 		//Validation for the Password
 		System.out.println("Ingress Name: ");
-		name=sc.nextLine();
+		name=validatingStrings();
 		//Validation for the Name
 		System.out.println("Ingress email: ");
-		email=sc.nextLine();
+		email=validatingStrings();
 		//Validation for the Email
 		
 		Player player=new Player(name,username,password,email);
@@ -83,15 +87,26 @@ public class ConsoleMainMenu implements ISystemMessage{
 	public void login() {
 		String username, password;
 		System.out.println("Ingress username: ");
-		username=sc.nextLine();
+		username=validatingStrings();
 		//Validation for the Username, for the correct length and check if it's already in the system, in case it is, proceed, else informs and returns to the previous menu
 		System.out.println("Ingress password: ");
-		password=sc.nextLine();
+		password=validatingStrings();
 		//Validation for the Password, and check if it matches with the one acording to that user
 		
 		//If everything is correct, depending if it's a Player or an Admin, takes it to another menu
 	}
 	
+	private String validatingStrings() {
+		String word="";
+		do {	
+			try {
+				word=sc.nextLine();
+			}catch (InputMismatchException e){
+				System.out.println(valueErrorMessage + "Please ingress again");
+			}
+		}while(word.length()<=0);
+		return word;
+	}
 
 	//Getter Setter
 	private byte getOp() {
