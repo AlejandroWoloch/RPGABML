@@ -20,7 +20,7 @@ public class CRUD<T extends Base> {
 	    			throw new Exception("The object does not have to be an empty object");
 	    		}
 	    	}else {
-	    		throw new Exception("The list isn't initialized");
+	    		throw new NullPointerException("The list isn't initialized");
 	    	}
 	    }
 	    
@@ -30,15 +30,18 @@ public class CRUD<T extends Base> {
 	     */
 	    String read(){
 	    	String msg = "";
-	    	
-	        if(!list.isEmpty()) {
-	        	for (T t : list) {
-					msg += t.toString() + "\n";
-				}
-	        }
-	        else {
-	        	throw new NullPointerException("The list is empty.");
-	        }
+	    	if(list!=null) {	
+	        	if(!list.isEmpty()) {
+	        		for (T t : list) {
+	        			msg += t.toString() + "\n";
+	        		}
+	        	}
+	        	else {
+	        		throw new NullPointerException("The list is empty.");
+	        	}
+	    	}else {
+	    		throw new NullPointerException("The list isn't initialized");
+	    	}
 	        
 	        return msg;
 	    }
@@ -48,14 +51,18 @@ public class CRUD<T extends Base> {
 	     * Updates the value of the T object on the List
 	     */
 	    void update(T obj) throws Exception {
-	    	if(!list.isEmpty()) {
-	    		for(T t: list) {
-	    			if(t.equals(obj)) {
-	    				t = obj;
+	    	if(list!=null) {
+	    		if(!list.isEmpty()) {
+	    			for(T t: list) {
+	    				if(t.equals(obj)) {
+	    					t = obj;
+	    				}
 	    			}
+	    		}else {
+	    			throw new NullPointerException("The list is empty, you can not update an object that not exist");
 	    		}
 	    	}else {
-	    		throw new NullPointerException("The list is empty, you can not update an object that not exist");
+	    		throw new NullPointerException("The list isn't initialized");
 	    	}
 	    }
 	    
@@ -64,8 +71,12 @@ public class CRUD<T extends Base> {
 	     * Delete an Object based on its id
 	     */
 	    void delete(int id) throws Exception {
-	    	T obj=find(id);
-	    	list.remove(obj);
+	    	if(list!=null) {
+	    		T obj=find(id);
+	    		list.remove(obj);
+	    	}else {
+	    		throw new NullPointerException("The list isn't initialized");
+	    	}
 	    }
 
 		// Other methods
@@ -92,17 +103,21 @@ public class CRUD<T extends Base> {
 	     */
 	    T find(int id) throws Exception {
 	    	T obj=null;
-	    	if(!list.isEmpty()) {
-	    		for(T t: list) {
-	    			if(t.getId()==id) {
-	    				obj=t;
+	    	if(list!=null) {
+	    		if(!list.isEmpty()) {
+	    			for(T t: list) {
+	    				if(t.getId()==id) {
+	    					obj=t;
+	    				}
 	    			}
+	    		}else {
+	    			throw new NullPointerException("The list is empty");
+	    		}
+	    		if (obj==null) {
+	    			throw new Exception("There's no element with this ID");
 	    		}
 	    	}else {
-	    		throw new NullPointerException("The list is empty");
-	    	}
-	    	if (obj==null) {
-	    		throw new Exception("There's no element with this ID");
+	    		throw new NullPointerException("The list isn't initialized");
 	    	}
 	    	return obj;
 	    }
