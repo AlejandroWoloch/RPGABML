@@ -13,11 +13,15 @@ public class CRUD<T extends Base> {
 	     * Adds an Object in the List
 	     */
 	    void create(T obj) throws Exception {
-	    	if(obj != null) {
-	    		list.add(obj);
-	        } else {
-	        	throw new Exception("The object does not have to be an empty object");
-	        }
+	    	if(list!=null) {
+	    		if(obj != null) {
+	    			list.add(obj);
+	    		} else {
+	    			throw new Exception("The object does not have to be an empty object");
+	    		}
+	    	}else {
+	    		throw new Exception("The list isn't initialized");
+	    	}
 	    }
 	    
 	    /**
