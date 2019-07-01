@@ -14,7 +14,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 		users= new CRUD<User>();
 		//Load Players and Admins from files
 		DataManager.initDataManager();
-		//users=DataManager.getList(USER);
+		users.updateAll(castList(User.class,DataManager.getList(DataManager.Colection.USER)));
 	}
 	
 	//Methods
