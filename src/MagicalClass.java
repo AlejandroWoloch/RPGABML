@@ -1,6 +1,6 @@
 import java.util.List;
 
-public abstract class MagicalClass extends PlayableCharacter {
+public abstract class MagicalClass extends PlayableCharacter implements ISystemMessage {
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
@@ -8,7 +8,6 @@ public abstract class MagicalClass extends PlayableCharacter {
 	private int mana;
 	private int inteligence;
 	protected CRUD<Spell> spellList;
-	protected static final String errorMessage = "Error: Invalid value";
 
 	//Constructors
 	public MagicalClass(String name, int mana, int inteligence) throws Exception {
@@ -69,7 +68,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 			this.mana = mana;
 		} else {
 			String setManaError = "Mana should be higher than zero and smaller than max Mana";
-			throw new Exception(MagicalClass.errorMessage + setManaError);
+			throw new Exception(valueErrorMessage + setManaError);
 		}
 	}
 
@@ -90,7 +89,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 			this.inteligence = inteligence;			
 		} else {
 			String setInteligenceError = "Mana should be higher than zero and smaller than max Mana";
-			throw new Exception(MagicalClass.errorMessage + setInteligenceError);
+			throw new Exception(valueErrorMessage + setInteligenceError);
 		}
 	}
 }
