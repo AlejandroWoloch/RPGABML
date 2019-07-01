@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ConsoleMenu implements ISystemMessage{
+public class ConsoleMainMenu implements ISystemMessage{
 	//attributes
 	private byte op;
 	private Scanner sc;
 	
 	//Constructor
-	public ConsoleMenu() {
+	public ConsoleMainMenu() {
 		sc= new Scanner(System.in);
 	}
 	
