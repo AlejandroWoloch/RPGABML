@@ -1,6 +1,6 @@
 import java.util.List;
 
-public abstract class MagicalClass extends PlayableCharacter implements ISystemMessage {
+public abstract class MagicalClass extends PlayableCharacter {
 
 	// Attributes
 	private static final long serialVersionUID = 1L;

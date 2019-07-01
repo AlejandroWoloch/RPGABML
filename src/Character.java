@@ -7,7 +7,6 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	// Attributes
 	private static final long serialVersionUID = 1L;
 	private static int lastId = 0;
-	private int id;
 	private byte level;
 	private static byte maxLevel = 50;
 	private static short baseAttack = 5;
@@ -76,10 +75,6 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	// Getters and Setters
 	private static int getLastId() {
 		return ++Character.lastId;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	private void setId() {
