@@ -49,6 +49,8 @@ public class Main {
 		 * Actualmente solo se puede leer y escribir todos los archivos juntos, deje como privado los metodos para hacerlo en un unico archivo,
 		 * esto es discutible en base a lo que queramos, es simplemente cambiar esos metodos a publico.
 		 * 
+		 * El ejemplo de abajo fue para probar los update del CRUD y del DataManager, no es necesariamente asi como deberiamos usarlo ajaja
+		 * 
 		 */
 		
 		/**

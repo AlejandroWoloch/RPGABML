@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import File.PersistenceCollection;
 
-//import Test.Padre;
-
 public class DataManager {
 
 	/**

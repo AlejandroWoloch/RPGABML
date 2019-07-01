@@ -71,19 +71,6 @@ public class CRUD<T extends Base> {
 	    	}
 	    }
 	    
-	    /*
-	    List<T> getSubSet(List<Base> list){
-	    	List<T> temp = new ArrayList<T>();
-	    	T aux = (T) new Base();
-	    	
-	    	for (Base t : list) {
-				if(t.getClass().isInstance(aux))
-					temp.add((T) t);
-			}
-	    	
-	    	return temp;
-	    }
-	    */
 	    /**
 	     * Replaces the elements of list with new ones from another list
 	     * 
