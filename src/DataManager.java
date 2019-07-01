@@ -66,12 +66,48 @@ public class DataManager {
 	 * @return
 	 * Returns the list that is mapped to the colecion parameter int data hashmap
 	 */
-	public static List<Base> getList(Colection colection) {
-		return data.get(colection);
+	public static List<Base> getData(Colection colection) {
+		
+		List<Base> list = new ArrayList<Base>();
+		list.addAll(data.get(colection));
+		
+		return list;
 	}
 	
 	/**
-	 * Writes all files with de information in data hasmap
+	 * Clears a list from the data hashmap
+	 * 
+	 * @param colection
+	 * Used to indicate wich list to clear data
+	 */
+	public static void clearData(Colection colection) {
+		data.get(colection).clear();
+	}
+	
+	/**
+	 * Replaces all elements from a list of data hashmap with given ones
+	 * 
+	 * @param colection
+	 * Reference to which list update
+	 * 
+	 * @param list
+	 * New elements to update data hashmap's list with
+	 * 
+	 * @throws Exception
+	 * The given list can't be empty.
+	 */
+	public static void updateData(Colection colection, List<Base> list) throws Exception{
+  		if(! list.isEmpty()) {
+  	  		data.get(colection).clear();
+  	  		data.get(colection).addAll(list); 			
+  		}
+  		else {
+  			throw new Exception("Can't update data with an empty list. Try clear instead");
+  		}
+  	}
+	
+	/**
+	 * Writes all files with the information in data hashmap
 	 * 
 	 * @throws Exception
   	 * inherited from PersistenceCollection.WriteIntoFile()
@@ -83,7 +119,7 @@ public class DataManager {
 	}
 	
 	/**
-	 * Fills data hashmap with all the infromation from files
+	 * Fills data hashmap with all the information from files
 	 * 
 	 * @throws Exception
   	 * inherited from PersistenceCollection.ReadFromFile()
