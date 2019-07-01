@@ -10,19 +10,25 @@ public class ConsoleMainMenu implements ISystemMessage{
 	//Constructor
 	public ConsoleMainMenu() {
 		sc= new Scanner(System.in);
+		//Load Players and Admins from files
 	}
 	
+	//Methods
 	public void menu() throws Exception {
+		op=-1;
 		ArrayList<String> s= new ArrayList<>();
 		s.add("Create an Account");
 		s.add("Login");
-		int quant= generateOptions(s);
-		insertOption(quant);
-		switch(getOp()) {
-		case 1: System.out.println("Accessing Create an Account"); break;
-		case 2: System.out.println("Accessing Login"); break;
-		case 0: System.exit(0);
-		}
+		while(getOp()!=0) {
+			int quant= generateOptions(s);
+			insertOption(quant);
+			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
+			switch(getOp()) {
+			case 1: System.out.println("Accessing Create an Account"); createAccount(); break;
+			case 2: System.out.println("Accessing Login"); break;
+			case 0: System.exit(0);	
+			}
+		}	
 	}
 	
 	public int generateOptions(ArrayList<String> options) {
@@ -55,10 +61,39 @@ public class ConsoleMainMenu implements ISystemMessage{
 		}
 	}
 	
-	public void validateInsertOption() {
+	public void createAccount() throws Exception {
+		String name, username, password, email;
+		System.out.println("Ingress username: ");
+		username=sc.nextLine();
+		//Validation for the Username, for the correct length and check if it's already in the system
+		System.out.println("Ingress password: ");
+		password=sc.nextLine();
+		//Validation for the Password
+		System.out.println("Ingress Name: ");
+		name=sc.nextLine();
+		//Validation for the Name
+		System.out.println("Ingress email: ");
+		email=sc.nextLine();
+		//Validation for the Email
 		
+		Player player=new Player(name,username,password,email);
+		//Add Player to the Player file
 	}
+	
+	public void login() {
+		String username, password;
+		System.out.println("Ingress username: ");
+		username=sc.nextLine();
+		//Validation for the Username, for the correct length and check if it's already in the system, in case it is, proceed, else informs and returns to the previous menu
+		System.out.println("Ingress password: ");
+		password=sc.nextLine();
+		//Validation for the Password, and check if it matches with the one acording to that user
+		
+		//If everything is correct, depending if it's a Player or an Admin, takes it to another menu
+	}
+	
 
+	//Getter Setter
 	private byte getOp() {
 		return op;
 	}
