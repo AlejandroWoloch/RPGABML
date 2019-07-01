@@ -1,10 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CRUD<T extends Base> {
 
 		// Attributes
 	    List<T> list = null;
+	    
+	    CRUD (){
+	    	initialize();
+	    }
 	    
 	    // Methods
 	    // CRUD methods
@@ -67,6 +72,44 @@ public class CRUD<T extends Base> {
 	    }
 	    
 	    /**
+	     * Replaces the elements of list with new ones from another list
+	     * 
+	     * @param newData
+	     * list with the new values to add to list
+	     * @throws Exception
+	     */
+	    void updateAll(List<T> newData) throws Exception {
+	    	if(newData != null) {
+		  		if(! newData.isEmpty()) {
+		  			if(list != null){
+			  	  		list.clear();
+			  	  		list.addAll(newData); 	
+		  			}
+		  			else {
+		  				throw new Exception("The list isn't initialized");
+		  			}		
+		  		}
+		  		else {
+		  			throw new Exception("Can't update list with an empty newData. Try clear() instead");
+		  		}
+	    	}
+	    	else {
+	    		throw new Exception("newData is null");
+	    	}
+	    }
+	    
+	    /**
+	     * Empties list
+	     * @throws Exception
+	     */
+	    void clear() throws Exception {
+	    	if(list !=null)
+	    		list.clear();
+	    	else
+	    		throw new Exception ("The list isn't initialized");
+	    }
+	    
+	    /**
 	     * DELETE method
 	     * Delete an Object based on its id
 	     */
@@ -82,10 +125,13 @@ public class CRUD<T extends Base> {
 		// Other methods
 	    /**
 	     * GETLIST method
-	     * returns the List
+	     * returns a new list with the elements of list
 	     */
 	    List<T> getList() {
-	    	return list;
+	    	List<T> temp = new ArrayList<T>();
+	    	temp.addAll(list);
+	    	
+	    	return temp;
 	    }
 	    
 	    /**
