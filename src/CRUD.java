@@ -63,9 +63,8 @@ public class CRUD<T extends Base> {
 	    	T obj=find(id);
 	    	list.remove(obj);
 	    }
-	    
-	    
-	    // Other methods
+
+		// Other methods
 	    /**
 	     * GETLIST method
 	     * returns the List
