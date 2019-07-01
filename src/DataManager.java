@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import File.PersistenceCollection;
 
@@ -13,7 +14,7 @@ public class DataManager {
 	 * List of all the different clases that have instances that needs to be persisted
 	 */
 	enum Colection{
-		PLAYABLECHARACTER, NONPLAYABLECHARACTER, USER, SPELL, PHYSICALSKILL
+		PLAYABLECHARACTER, NONPLAYABLECHARACTER, PLAYER, ADMIN, SPELL, PHYSICALSKILL
 	}
 		
 	private static Map<Colection,String> fileNames = new HashMap<Colection,String>();	//File Names for persisted data, mapped to key from Colection enum
@@ -74,6 +75,7 @@ public class DataManager {
 		return list;
 	}
 	
+	
 	/**
 	 * Clears a list from the data hashmap
 	 * 
@@ -96,7 +98,7 @@ public class DataManager {
 	 * @throws Exception
 	 * The given list can't be empty.
 	 */
-	public static void updateData(Colection colection, List<Base> list) throws Exception{
+	public static void updateData(Colection colection, List<? extends Base> list) throws Exception{
   		if(! list.isEmpty()) {
   	  		data.get(colection).clear();
   	  		data.get(colection).addAll(list); 			
