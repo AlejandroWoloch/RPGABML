@@ -1,9 +1,9 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Admin extends User{
 
-	//Atributes
+	//Attributes
+	private static final long serialVersionUID = 1L;
 	CRUD<User> users = null;
 	CRUD<NonPlayableCharacter> monsters = null;
 	CRUD<Spell> spells = null;
