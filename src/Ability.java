@@ -14,6 +14,7 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	
 	//Constructor
 	public Ability(String name, byte level, String classUser) throws Exception {
+		super();
 		this.setName(name);
 		this.setLevel(level);
 	}

@@ -15,6 +15,7 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	
 	// Constructor
 	public Character(byte level, String name) throws Exception {
+		super();
 		this.setLevel(level);
 		this.setName(name);
 	}
