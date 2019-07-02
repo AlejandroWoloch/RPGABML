@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ConsoleMainMenu implements ISystemMessage{
 	//attributes
 	private byte op;
-	private Scanner sc;
+	protected Scanner sc;
 	private CRUD<User> users=null;
 	
 	//Constructor
@@ -150,6 +150,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 	
 	private CRUD<User> readUserFile() throws Exception{
 		CRUD<User> u= new CRUD<User>();
+		DataManager.readAllFiles();
 		try {
 			u.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
 		}catch (Exception e) {
