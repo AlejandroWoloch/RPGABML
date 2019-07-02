@@ -40,7 +40,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 			email=validatingStrings();
 			Player player=new Player(name,username,password,email);
 			addUsers(player);
-			//writeUserFile();
+			writeUserFile();
 		}else {
 			System.out.println("Username already in use");
 		}
@@ -68,7 +68,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 					//adminMenu(finalUser);
 				}
 				users.update(finalUser);
-				//writeUserFile();
+				writeUserFile();
 			}else {
 				System.out.println("Incorrect Username or Password");
 			}
