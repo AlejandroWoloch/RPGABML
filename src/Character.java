@@ -32,8 +32,7 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	}
 	
 	public void takeDamage(int damageRecived) {
-		int damageTaken = (int) (damageRecived * (100/(100 + this.calculateDefense())));
-		this.setCurrentHP(this.getCurrentHP() - damageTaken);
+		this.setCurrentHP(this.getCurrentHP() - damageRecived);
 	}
 	
 	/**

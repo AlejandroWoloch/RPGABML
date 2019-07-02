@@ -33,8 +33,11 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 	}
 	
 	public PlayableCharacter startFight() throws Exception {
-		
-		monstersAviable.updateAll(Main.castList(NonPlayableCharacter.class, DataManager.getData(DataManager.Colection.NONPLAYABLECHARACTER)));
+		try {
+			monstersAviable.updateAll(Main.castList(NonPlayableCharacter.class, DataManager.getData(DataManager.Colection.NONPLAYABLECHARACTER)));			
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 
 		NonPlayableCharacter npc = null;
 		
@@ -53,7 +56,7 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 			npc = new NonPlayableCharacter(getPc().getLevel(), "Elvis from an Empty List");
 		}
 			
-		while(npc.getCurrentHP()>0 || pc.getCurrentHP()>0) {
+		while(npc.getCurrentHP()>0 && pc.getCurrentHP()>0) {
 			System.out.println("Your turn to attack, your HP: " + pc.getCurrentHP());
 			npc.takeDamage(pc.calculateAttack());
 			if(npc.getCurrentHP()>0) {
