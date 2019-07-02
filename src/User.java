@@ -7,7 +7,6 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 	// Attributes
 	private static final long serialVersionUID = 1L;
 	private static int lastId;
-	private String name;
 	private String username;
 	private String password;
 	private String email;
@@ -67,10 +66,6 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 
 	private void setId() {
 		this.id = User.getLastId();
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public void setName(String name) throws Exception {

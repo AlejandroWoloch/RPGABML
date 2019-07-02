@@ -3,6 +3,7 @@ public class Base {
 	
 	protected int id;
 	boolean deleted;
+	protected String name;
 	
 	public Base() {
 		setDeleted(false);
@@ -18,5 +19,9 @@ public class Base {
 	
 	public void setDeleted(boolean deleted) {
 		this.setDeleted(deleted);
+	}
+
+	public String getName() {
+		return this.name;
 	}
 }
