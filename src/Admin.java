@@ -12,7 +12,7 @@ public class Admin extends User{
 	
 	//Constructors
 	public Admin(String name, String username, String email, boolean getData) throws Exception {
-		super(name, username, email);
+		super(0,name, username, email);
 		this.initializateCRUDs();
 	}
 

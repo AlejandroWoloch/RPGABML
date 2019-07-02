@@ -6,14 +6,15 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
-	private static int lastId = 0;
+	private static int lastId;
 	private String name;
 	private String username;
 	private String password;
 	private String email;
 	
 	// Constructor
-	public User(String name, String username, String email) throws Exception {
+	public User(int lastId, String name, String username, String email) throws Exception {
+		User.setLastId(lastId);
 		this.setId();
 		this.setName(name);
 		this.setUsername(username);
@@ -54,6 +55,10 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 	}
 
 	// Getters and Setters
+	private static void setLastId(int lastId) {
+		User.lastId = lastId;
+	}
+	
 	private static int getLastId() {
 		return ++User.lastId;
 	}

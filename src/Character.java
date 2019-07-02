@@ -6,7 +6,7 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
-	private static int lastId = 0;
+	private static int lastId;
 	private byte level;
 	private static byte maxLevel = 50;
 	private static short baseAttack = 5;
@@ -15,7 +15,8 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	private String name;
 	
 	// Constructor
-	public Character(byte level, String name) throws Exception {
+	public Character(int lastId, byte level, String name) throws Exception {
+		Character.setLastId(lastId);
 		this.setId();
 		this.setLevel(level);
 		this.setName(name);
@@ -73,6 +74,10 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	}
 
 	// Getters and Setters
+	private static void setLastId(int lastId) {
+		Character.lastId = lastId;
+	}
+	
 	private static int getLastId() {
 		return ++Character.lastId;
 	}
