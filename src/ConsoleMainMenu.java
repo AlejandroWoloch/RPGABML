@@ -7,7 +7,6 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
 		users= new CRUD<User>();
-		//DataManager.initDataManager();
 		//users=readUserFile();
 	}
 	
