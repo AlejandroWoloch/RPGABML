@@ -1,30 +1,19 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
 
-public class ConsoleMainMenu implements ISystemMessage{
-	//attributes
-	private byte op;
-	protected Scanner sc;
+public class ConsoleMainMenu extends ConsoleMenu{
+	//Attributes
 	private CRUD<User> users=null;
 	
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
-		sc= new Scanner(System.in);
 		users= new CRUD<User>();
 		DataManager.initDataManager();
 		users=readUserFile();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static <T extends Base> List<T> castList(Class<T> specificClass, List<? extends Base> units) {
-        return (List<T>) units;
-   }
-	
 	//Methods
 	public void menu() throws Exception {
-		op=-1;
+		setOp((byte)-1);
 		ArrayList<String> s= new ArrayList<>();
 		s.add("Create an Account");
 		s.add("Login");
@@ -38,36 +27,6 @@ public class ConsoleMainMenu implements ISystemMessage{
 			case 0: System.exit(0);	
 			}
 		}	
-	}
-	
-	public int generateOptions(ArrayList<String> options) {
-		int cont=0;
-		for(String o:options) {
-			cont++;
-			System.out.println(cont + "- " + o);
-		}
-		System.out.println("0- Exit");
-		return cont;
-	}
-	
-	public void insertOption(int quant) throws Exception {
-		if(quant==0) {
-			throw new Exception("There's no options to show");
-		}else {
-			do {
-				System.out.print("Ingress option: ");
-				try {
-					setOp(sc.nextByte());
-					if(getOp()<0 || getOp()>quant) {
-						System.out.println(valueErrorMessage + "Invalid option");
-					}
-				}catch (InputMismatchException e) {
-					System.out.println(valueErrorMessage + "Insert a number");
-					setOp((byte) -1);
-					sc.nextLine();
-				}
-			}while(getOp()<0 || getOp()>quant);
-		}
 	}
 	
 	public void createAccount() throws Exception {
@@ -105,25 +64,12 @@ public class ConsoleMainMenu implements ISystemMessage{
 				}else {
 					//adminMenu(finalUser);
 				}
-				//Check if it's Player or Admin and sends to different menus
 			}else {
 				System.out.println("Incorrect Username or Password");
 			}
 		}else {
 			System.out.println("Incorrect Username");
 		}
-	}
-	
-	private String validatingStrings() {
-		String word="";
-		do {	
-			try {
-				word=sc.nextLine();
-			}catch (InputMismatchException e){
-				System.out.println(valueErrorMessage + "Please ingress again");
-			}
-		}while(word.length()<=0);
-		return word;
 	}
 	
 	private boolean validateUsernameFromFile(String username) {
@@ -165,13 +111,6 @@ public class ConsoleMainMenu implements ISystemMessage{
 	}
 
 	//Getter Setter
-	protected byte getOp() {
-		return op;
-	}
-
-	protected void setOp(byte op) {
-		this.op = op;
-	}
 	
 	protected CRUD<User> getUsers(){
 		return this.users;
