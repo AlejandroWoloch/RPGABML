@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Admin extends User{
 
@@ -9,16 +11,14 @@ public class Admin extends User{
 	
 	
 	//Constructors
-	public Admin(String name, String username, String email) throws Exception {
+	public Admin(String name, String username, String email, boolean getData) throws Exception {
 		super(name, username, email);
 		this.initializateCRUDs();
-		this.getAllDataFromDM();
 	}
 
-	public Admin(String name, String username, String password, String email) throws Exception {
+	public Admin(String name, String username, String password, String email, boolean getData) throws Exception {
 		super(name, username, password, email);
 		this.initializateCRUDs();
-		this.getAllDataFromDM();
 	}
 
 	//Used By the Constructors to initialize all the CRUDs
@@ -83,14 +83,51 @@ public class Admin extends User{
 		DataManager.updateData(DataManager.Colection.PHYSICALSKILL, skills.getList());
 	}
 	
-	public void administrateMonsters() {
-		System.out.println("MONSTRUOS\n"
-				+ "1. Mostrar Lista\n"
-				+ "2. Crear nuevo monstruo\n"
-				+ "3. Buscar Monstruo por id\n"
-				+ "4. Guardar cambios en el sistema\n"
-				+ "5. Persistir Informacion guardada en el sistema");
+	public void createMonster(NonPlayableCharacter newMonster) throws Exception{
+		try {
+			monsters.create(newMonster);
+		}
+		catch (Exception e) {
+			throw new Exception ("A problem emerged and the monster couldn't be added. Posible reason: " + e.getMessage());
+		}
 	}
+	
+	public List<NonPlayableCharacter> listMonsters() {
+		return monsters.getList();
+	}
+	
+	public NonPlayableCharacter serchMonsterById(int id) throws Exception {
+		NonPlayableCharacter temp = null;
+		
+		try {
+			temp = monsters.find(id);
+		}
+		catch (Exception e) {
+			throw new Exception("Couldn't find a monster with that Id. Posible reason: " + e.getMessage());
+		}
+		
+		return temp;
+	}
+	
+	public void updateMonster(NonPlayableCharacter modifiedMonster) throws Exception {
+		try {
+			monsters.update(modifiedMonster);
+		}
+		catch (Exception e) {
+			throw new Exception ("The monster couldn't be updated. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public void deleteMonster(int id) throws Exception {
+		try {
+			monsters.delete(id);
+		}
+		catch (Exception e) {
+			throw new Exception ("monster couldn't be deleted. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	
 	
 	public void administrateUsers() {
 		
