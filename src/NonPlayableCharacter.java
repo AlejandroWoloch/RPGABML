@@ -6,11 +6,11 @@ public class NonPlayableCharacter extends Character {
 	
 	// Constructor
 	public NonPlayableCharacter(String name) throws Exception {
-		super((byte) 1, name);
+		super(0,(byte) 1, name);
 	}
 	
 	public NonPlayableCharacter(byte level, String name) throws Exception {
-		super(level, name);
+		super(0,level, name);
 	}
 	
 	//Methods

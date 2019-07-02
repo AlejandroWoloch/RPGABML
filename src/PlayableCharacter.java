@@ -9,12 +9,12 @@ public abstract class PlayableCharacter extends Character{
 	
 	//Constructors
 	public PlayableCharacter(String name) throws Exception{ //For brand new Characters that will start at level 1
-		super((byte) 1, name);
+		super(0,(byte) 1, name);
 		this.setExperience(0);
 	}
 	
 	public PlayableCharacter(byte level, String name, int experience) throws Exception{ //Used to instance characters with data from JSON
-		super(level, name);
+		super(0,level, name);
 		this.setExperience(experience);
 	}
 	
