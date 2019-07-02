@@ -17,6 +17,6 @@ public class Base {
 	}
 	
 	public void setDeleted(boolean deleted) {
-		this.setDeleted(deleted);
+		this.deleted = deleted;
 	}
 }
