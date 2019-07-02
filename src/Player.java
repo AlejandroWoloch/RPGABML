@@ -91,5 +91,12 @@ public class Player extends User {
 		return Objects.hash(getId());
 	}
 	
-	
+	public void updateCharacter(PlayableCharacter newCharacter) throws Exception{
+		if(newCharacter != null) {
+			this.character = newCharacter;
+		}
+		else {
+			throw new Exception("Can't create a null character");
+		}
+	}
 }
