@@ -35,20 +35,12 @@ public class Cleric extends MagicalClass {
 	}
 
 	@Override
-	public void lernNewSpell(Spell newSpell) {
-		try {
-			super.spellList.create(newSpell);
-		} catch (Exception error) {
-			error.getMessage();
-		}
+public void lernNewSpell(Spell newSpell) throws Exception {
+		super.spellList.create(newSpell);
 	}
 
 	@Override
-	public void updateSpell(Spell spell) {
-		try {
-			super.spellList.update(spell);
-		} catch (Exception error) {
-			error.getMessage();
-		}
+	public void updateSpell(Spell spell) throws Exception {
+		super.spellList.update(spell);
 	}
 }
