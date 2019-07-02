@@ -55,7 +55,7 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 	}
 
 	// Getters and Setters
-	private static void setLastId(int lastId) {
+	public static void setLastId(int lastId) {
 		User.lastId = lastId;
 	}
 	

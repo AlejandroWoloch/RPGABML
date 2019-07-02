@@ -2,15 +2,18 @@ public class NonPlayableCharacter extends Character {
 	
 	// Attributes
 	private static final long serialVersionUID = 1L;
+	private static int lastId;
 	private int expRewarded;
 	
 	// Constructor
 	public NonPlayableCharacter(String name) throws Exception {
-		super(0,(byte) 1, name);
+		super((byte) 1, name);
+		this.setId();
 	}
 	
 	public NonPlayableCharacter(byte level, String name) throws Exception {
-		super(0,level, name);
+		super(level, name);
+		this.setId();
 	}
 	
 	//Methods
@@ -42,4 +45,17 @@ public class NonPlayableCharacter extends Character {
 	public void setExpRewarded() {
 		this.expRewarded = (int) (super.calculateAttack() - super.calculateDefense() + (0.5 * super.calculateHp()));
 	}	
+	
+
+	public static void setLastId(int lastId) {
+		NonPlayableCharacter.lastId = lastId;
+	}
+	
+	private static int getLastId() {
+		return ++NonPlayableCharacter.lastId;
+	}
+	
+	private void setId() {
+		this.id = NonPlayableCharacter.getLastId();
+	}
 }
