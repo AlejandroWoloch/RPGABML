@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CRUD<T extends Base> {
 
@@ -20,7 +19,11 @@ public class CRUD<T extends Base> {
 	    void create(T obj) throws Exception {
 	    	if(list!=null) {
 	    		if(obj != null) {
-	    			list.add(obj);
+	    			if(!list.contains(obj)) {
+	    				list.add(obj);	    				
+	    			} else {
+	    				throw new Exception("The object already exist");
+	    			}
 	    		} else {
 	    			throw new Exception("The object does not have to be an empty object");
 	    		}

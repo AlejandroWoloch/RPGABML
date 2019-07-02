@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
 	
@@ -87,7 +86,7 @@ public class Main {
 		 */
 		DataManager.initDataManager();
 		try {
-			DataManager.updateData(DataManager.Colection.PLAYER, auxP);
+			DataManager.updateData(DataManager.Colection.USER, auxP);
 		} catch (Exception e1) {		}
 		
 		
@@ -97,7 +96,7 @@ public class Main {
 		 * Luego vuelvo a mostrar la data de CRUD Player y efectivamente se sobreescribio.
 		 */
 		try {
-			players.updateAll(castList(Player.class, DataManager.getData(DataManager.Colection.PLAYER)));
+			players.updateAll(castList(Player.class, DataManager.getData(DataManager.Colection.USER)));
 		} catch (Exception e) {		}
 		
 

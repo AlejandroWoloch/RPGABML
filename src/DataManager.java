@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import File.PersistenceCollection;
 
 public class DataManager {
 
 	/**
-	 * List of all the different clases that have instances that needs to be persisted
+	 * List of all the different classes that have instances that needs to be persisted
 	 */
 	enum Colection{
 		PLAYABLECHARACTER, NONPLAYABLECHARACTER, USER, SPELL, PHYSICALSKILL
