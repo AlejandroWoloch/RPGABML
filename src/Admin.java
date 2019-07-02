@@ -83,6 +83,20 @@ public class Admin extends User{
 		DataManager.updateData(DataManager.Colection.PHYSICALSKILL, skills.getList());
 	}
 	
+	
+	/**
+	 * Methods to administrate monsters.
+	 */
+	
+	
+	/**
+	 * Adds a new monster to the monsters list
+	 * @param newMonster
+	 * the monster that is willed to be added
+	 * 
+	 * @throws Exception
+	 * Inherited from CRUD method create();
+	 */
 	public void createMonster(NonPlayableCharacter newMonster) throws Exception{
 		try {
 			monsters.create(newMonster);
@@ -123,13 +137,176 @@ public class Admin extends User{
 			monsters.delete(id);
 		}
 		catch (Exception e) {
-			throw new Exception ("monster couldn't be deleted. Posible reason: " + e.getMessage());
+			throw new Exception ("The Monster couldn't be deleted. Posible reason: " + e.getMessage());
 		}
 	}
 	
 	
+	/**
+	 * Methods to administrate users.
+	 */
 	
-	public void administrateUsers() {
+	
+	/**
+	 * 
+	 * @param newMonster
+	 * @throws Exception
+	 */
+	public void createUser(User newUser) throws Exception{
+		try {
+			users.create(newUser);
+		}
+		catch (Exception e) {
+			throw new Exception ("A problem emerged and the user couldn't be added. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public List<User> listUsers() {
+		return users.getList();
+	}
+	
+	public User serchUserById(int id) throws Exception {
+		User temp = null;
 		
+		try {
+			temp = users.find(id);
+		}
+		catch (Exception e) {
+			throw new Exception("Couldn't find an user with that Id. Posible reason: " + e.getMessage());
+		}
+		
+		return temp;
+	}
+	
+	public void updateUser(User modifiedUser) throws Exception {
+		try {
+			users.update(modifiedUser);
+		}
+		catch (Exception e) {
+			throw new Exception ("The user couldn't be updated. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public void deleteUser(int id) throws Exception {
+		
+		if(id == this.getId()) {
+			throw new Exception("You can't delete yourself");
+		}
+		try {
+			users.delete(id);
+		}
+		catch (Exception e) {
+			throw new Exception ("The user couldn't be deleted. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * Methods to administrate spells.
+	 */
+	
+	
+	/**
+	 * 
+	 * @param newMonster
+	 * @throws Exception
+	 */
+	public void createSpell(Spell newSpell) throws Exception{
+		try {
+			spells.create(newSpell);
+		}
+		catch (Exception e) {
+			throw new Exception ("A problem emerged and the spell couldn't be added. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public List<Spell> listSpells() {
+		return spells.getList();
+	}
+	
+	public Spell serchSpellById(int id) throws Exception {
+		Spell temp = null;
+		
+		try {
+			temp = spells.find(id);
+		}
+		catch (Exception e) {
+			throw new Exception("Couldn't find a spell with that Id. Posible reason: " + e.getMessage());
+		}
+		
+		return temp;
+	}
+	
+	public void updateSpell(Spell modifiedSpell) throws Exception {
+		try {
+			spells.update(modifiedSpell);
+		}
+		catch (Exception e) {
+			throw new Exception ("The spell couldn't be updated. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public void deleteSpell(int id) throws Exception {
+		try {
+			spells.delete(id);
+		}
+		catch (Exception e) {
+			throw new Exception ("Spell couldn't be deleted. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * Methods to administrate PhysicalSkills.
+	 */
+	
+	
+	/**
+	 * 
+	 * @param newMonster
+	 * @throws Exception
+	 */
+	public void createPhysicalSkill(PhysicalSkill newPhysicalSkill) throws Exception{
+		try {
+			skills.create(newPhysicalSkill);
+		}
+		catch (Exception e) {
+			throw new Exception ("A problem emerged and the skill couldn't be added. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public List<PhysicalSkill> listPhysicalSkill() {
+		return skills.getList();
+	}
+	
+	public PhysicalSkill serchPhysicalSkillById(int id) throws Exception {
+		PhysicalSkill temp = null;
+		
+		try {
+			temp = skills.find(id);
+		}
+		catch (Exception e) {
+			throw new Exception("Couldn't find a skill with that Id. Posible reason: " + e.getMessage());
+		}
+		
+		return temp;
+	}
+	
+	public void updatePhysicalSkill(PhysicalSkill modifiedPhysicalSkill) throws Exception {
+		try {
+			skills.update(modifiedPhysicalSkill);
+		}
+		catch (Exception e) {
+			throw new Exception ("The skill couldn't be updated. Posible reason: " + e.getMessage());
+		}
+	}
+	
+	public void deletePhysicalSkill(int id) throws Exception {
+		try {
+			skills.delete(id);
+		}
+		catch (Exception e) {
+			throw new Exception ("Skill couldn't be deleted. Posible reason: " + e.getMessage());
+		}
 	}
 }
