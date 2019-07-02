@@ -41,7 +41,8 @@ public class CRUD<T extends Base> {
 	    	if(list!=null) {	
 	        	if(!list.isEmpty()) {
 	        		for (T t : list) {
-	        			msg += t.toString() + "\n";
+	        			if(! t.isDeleted())
+	        				msg += t.toString() + "\n";
 	        		}
 	        	}
 	        	else {
@@ -119,7 +120,12 @@ public class CRUD<T extends Base> {
 	    void delete(int id) throws Exception {
 	    	if(list!=null) {
 	    		T obj=find(id);
-	    		list.remove(obj);
+	    		if(obj.isDeleted()) {
+	    			throw new Exception ("This object is already deleted");
+	    		}
+	    		else {
+		    		obj.setDeleted(true);
+	    		}
 	    	}else {
 	    		throw new NullPointerException("The list isn't initialized");
 	    	}

@@ -9,11 +9,13 @@ public class NonPlayableCharacter extends Character {
 	public NonPlayableCharacter(String name) throws Exception {
 		super((byte) 1, name);
 		this.setId();
+		this.setExpRewarded();
 	}
 	
 	public NonPlayableCharacter(byte level, String name) throws Exception {
 		super(level, name);
 		this.setId();
+		this.setExpRewarded();
 	}
 	
 	//Methods
