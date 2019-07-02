@@ -14,7 +14,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 		sc= new Scanner(System.in);
 		users= new CRUD<User>();
 		DataManager.initDataManager();
-		users=readPlayerAdminFiles();
+		users=readUserFile();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -83,6 +83,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 			email=validatingStrings();
 			Player player=new Player(name,username,password,email);
 			addUsers(player);
+			writeUserFile();
 		}else {
 			System.out.println("Username already in use");
 		}
@@ -97,7 +98,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 			System.out.println("Ingress password: ");
 			password=validatingStrings();
 			finalUser=validateUsernamePasswordFromFile(username,password);
-			if(finalUser==null) {
+			if(finalUser!=null) {
 				System.out.println("You've logged in");
 				if(finalUser instanceof Player) {
 					//playerMenu(finalUser);
@@ -147,28 +148,19 @@ public class ConsoleMainMenu implements ISystemMessage{
 		return user;
 	}
 	
-	private CRUD<User> readPlayerAdminFiles() throws Exception{
-		CRUD<Player> p= new CRUD<Player>();
-		CRUD<Admin> a= new CRUD<Admin>();
-		try {
-			p.updateAll(castList(Player.class,DataManager.getData(DataManager.Colection.PLAYER)));
-		}catch (Exception e) {
-			
-		}
-		try {
-			a.updateAll(castList(Admin.class,DataManager.getData(DataManager.Colection.ADMIN)));
-		}catch (Exception e) {
-		
-		}
+	private CRUD<User> readUserFile() throws Exception{
 		CRUD<User> u= new CRUD<User>();
-		for(Player pl:p.getList()) {
-			u.create(pl);
-		}
-		for(Admin ad:a.getList()) {
-			u.create(ad);
-		}
+		try {
+			u.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
+		}catch (Exception e) {
 		
+		}
 		return u;
+	}
+	
+	private void writeUserFile() throws Exception {
+		DataManager.updateData(DataManager.Colection.USER, getUsers().getList());
+		DataManager.writeAllFiles();
 	}
 
 	//Getter Setter
