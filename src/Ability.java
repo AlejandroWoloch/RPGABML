@@ -6,7 +6,7 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 
 	//Attributes
 	private static final long serialVersionUID = 1L;
-	private static int lastId = 0;
+	private static int lastId;
 	private String name;
 	private byte level;
 	protected final byte maxLevel = 50;
@@ -15,6 +15,7 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	
 	//Constructor
 	public Ability(String name, byte level, String classUser) throws Exception {
+		Ability.setLastId(lastId);
 		this.setId();
 		this.setName(name);
 		this.setLevel(level);
@@ -27,6 +28,10 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	}
 
 	//Getters and setters
+	private static void setLastId(int lastId) {
+		Ability.lastId = lastId;
+	}
+	
 	private static int getLastId() {
 		return ++Ability.lastId;
 	}
