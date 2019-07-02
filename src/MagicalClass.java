@@ -31,8 +31,8 @@ public abstract class MagicalClass extends PlayableCharacter {
 	}
  	
  	// Methods
- 	public abstract void lernNewSpell(Spell newSpell);
- 	public abstract void updateSpell(Spell spell);
+ 	public abstract void lernNewSpell(Spell newSpell) throws Exception;
+ 	public abstract void updateSpell(Spell spell) throws Exception;
 
 	public void forgetSpell(int id) throws Exception {
 		this.spellList.delete(id);

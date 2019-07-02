@@ -1,16 +1,16 @@
 
-public class Mage extends MagicalClass {
+public class Cleric extends MagicalClass {
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
 
 	// Constructors
-	public Mage(String name, int mana, int inteligence) throws Exception {
+	public Cleric(String name, int mana, int inteligence) throws Exception {
 		super(name, mana, inteligence);
 		
 	}
 	
-	public Mage(String name, int mana, int inteligence, byte level, int experience ) throws Exception {
+	public Cleric(String name, int mana, int inteligence, byte level, int experience ) throws Exception {
 		super(level, experience, mana, inteligence, name);
 		
 	}
@@ -35,7 +35,7 @@ public class Mage extends MagicalClass {
 	}
 
 	@Override
-	public void lernNewSpell(Spell newSpell) throws Exception {
+public void lernNewSpell(Spell newSpell) throws Exception {
 		try {
 			super.spellList.create(newSpell);
 		} catch (Exception error) {
