@@ -13,11 +13,10 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	//Methods
 	public void menu() throws Exception {
-		setOp((byte)-1);
 		ArrayList<String> s= new ArrayList<>();
 		s.add("Create an Account");
 		s.add("Login");
-		while(getOp()!=0) {
+		do {
 			int quant= generateOptions(s);
 			insertOption(quant);
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
@@ -26,7 +25,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 			case 2: System.out.println("Accessing Login"); login(); break;
 			case 0: System.exit(0);	
 			}
-		}	
+		}while(getOp()!=0);
 	}
 	
 	public void createAccount() throws Exception {
