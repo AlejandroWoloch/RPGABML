@@ -42,12 +42,7 @@ public abstract class Spell extends Ability {
 		return damage;
 	}
 
-	public void setDamage(int damage) throws Exception {
-		if (damage > 0) {
-			this.damage = damage;			
-		} else {
-			String setManaError = "The spell damage must be higher than zero.";
-			throw new Exception(valueErrorMessage + setManaError);
-		}
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}	
 }
