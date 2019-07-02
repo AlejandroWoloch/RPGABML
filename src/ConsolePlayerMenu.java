@@ -33,8 +33,12 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 		}while(getOp()!=0);
 	}
 	
+	@SuppressWarnings("null")
 	public void createCharacter() throws Exception {
 		String name;
+		int manaStamina,intelligence;
+		System.out.println("Ingress name: ");
+		name=validatingStrings();
 		System.out.println("Choose your characters class");
 		ArrayList<String> s= new ArrayList<>();
 		s.add("(Magical Class) Cleric");
@@ -46,15 +50,25 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 			insertOption(quant);
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
 			switch(getOp()) {
-			case 1: System.out.println("Accessing Create a Character"); createCharacter(); break;
-			case 2:
-			case 3:
-			case 4:
+			case 1: System.out.println("Creating a Cleric");
+					Cleric cl=new Cleric(name);
+					setOp((byte)0);
+					break;
+			case 2: System.out.println("Creating a Mage");
+					Mage ma=new Mage(name);
+					setOp((byte)0);
+					break;
+			case 3: System.out.println("Creating a Hunter");
+					Hunter hu=new Hunter(name);
+					setOp((byte)0);
+					break;
+			case 4: System.out.println("Creating a Hunter");
+					Warrior wa=new Warrior(name);
+					setOp((byte)0);
+					break;
 			case 0: break;
-			}
-		}while(getOp()!=0);
-		System.out.println("Ingress name: ");
-		name=validatingStrings();
+				}
+			}while(getOp()!=0);
 	}
 	
 	public void withCharacterMenu() {

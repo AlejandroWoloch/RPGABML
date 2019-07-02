@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -60,6 +59,19 @@ public abstract class ConsoleMenu implements ISystemMessage {
 			}
 		}while(word.length()<=0);
 		return word;
+	}
+
+	protected int validatingInt(int maxLimit) {
+		int number=0;
+		do {	
+			try {
+				number=sc.nextInt();
+			}catch (InputMismatchException e){
+				System.out.println(valueErrorMessage + "Please ingress again");
+				sc.nextLine();
+			}
+		}while(number<=0 || number>maxLimit);
+		return number;
 	}
 	
 	//Getters Setters

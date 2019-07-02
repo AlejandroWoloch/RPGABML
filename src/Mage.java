@@ -5,8 +5,8 @@ public class Mage extends MagicalClass {
 	private static final long serialVersionUID = 1L;
 
 	// Constructors
-	public Mage(String name, int mana, int inteligence) throws Exception {
-		super(name, mana, inteligence);
+	public Mage(String name) throws Exception {
+		super(name);
 		
 	}
 	

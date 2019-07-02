@@ -5,8 +5,8 @@ public class Cleric extends MagicalClass {
 	private static final long serialVersionUID = 1L;
 
 	// Constructors
-	public Cleric(String name, int mana, int inteligence) throws Exception {
-		super(name, mana, inteligence);
+	public Cleric(String name) throws Exception {
+		super(name);
 		
 	}
 	
