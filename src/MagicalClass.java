@@ -10,11 +10,11 @@ public abstract class MagicalClass extends PlayableCharacter {
 	protected CRUD<Spell> spellList;
 
 	//Constructors
-	public MagicalClass(String name, int mana, int inteligence) throws Exception {
+	public MagicalClass(String name) throws Exception {
 		super(name);
-		this.setMana(mana);
-		this.setInteligence(inteligence);
-		this.spellList.initialize();
+		this.setMana(maxMana);
+		this.setInteligence(super.getLevel()*25);
+		this.spellList= new CRUD<Spell>();
 	}
 
  	public MagicalClass(
@@ -58,7 +58,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 	@Override
 	public String toString() {
 		String base = super.toString();
-		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d, Spells\n" + this.spellList.read() + "]";
+		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d, Spells\n" + this.getSpellList().isEmpty() == null ? this.spellList.read() : "No Spells" + "]";
 		return base.concat(String.format(messageFmt, getMana(), getInteligence()));
 	}
 		
@@ -92,7 +92,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 		if (inteligence > 0) {
 			this.inteligence = inteligence;			
 		} else {
-			String setInteligenceError = "Mana should be higher than zero and smaller than max Mana";
+			String setInteligenceError = "Intelligence should be higher than zero";
 			throw new Exception(valueErrorMessage + setInteligenceError);
 		}
 	}
