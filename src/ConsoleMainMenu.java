@@ -1,21 +1,27 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleMainMenu implements ISystemMessage{
 	//attributes
 	private byte op;
 	private Scanner sc;
-	private CRUD<User> users=null;
+	private CRUD<Player> users=null;
 	
 	//Constructor
-	public ConsoleMainMenu() {
+	public ConsoleMainMenu() throws Exception {
 		sc= new Scanner(System.in);
-		users= new CRUD<User>();
-		//Load Players and Admins from files
+		users= new CRUD<Player>();
 		DataManager.initDataManager();
-		users.updateAll(castList(User.class,DataManager.getList(DataManager.Colection.USER)));
+		users.clear();
+		users.updateAll(castList(Player.class,DataManager.getData(DataManager.Colection.PLAYER)));
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T extends Base> List<T> castList(Class<T> specificClass, List<? extends Base> units) {
+        return (List<T>) units;
+   }
 	
 	//Methods
 	public void menu() throws Exception {
@@ -29,7 +35,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
 			switch(getOp()) {
 			case 1: System.out.println("Accessing Create an Account"); createAccount(); break;
-			case 2: System.out.println("Accessing Login"); break;
+			case 2: System.out.println("Accessing Login"); login(); break;
 			case 0: System.exit(0);	
 			}
 		}	
@@ -69,31 +75,35 @@ public class ConsoleMainMenu implements ISystemMessage{
 		String name, username, password, email;
 		System.out.println("Ingress username: ");
 		username=validatingStrings();
-		//Validation for the Username, for the correct length and check if it's already in the system
-		System.out.println("Ingress password: ");
-		password=validatingStrings();
-		//Validation for the Password
-		System.out.println("Ingress Name: ");
-		name=validatingStrings();
-		//Validation for the Name
-		System.out.println("Ingress email: ");
-		email=validatingStrings();
-		//Validation for the Email
-		
-		Player player=new Player(name,username,password,email);
-		//Add Player to the Player file
+		if(!validateUsernameFromFile(username)) {
+			System.out.println("Ingress password: ");
+			password=validatingStrings();
+			System.out.println("Ingress Name: ");
+			name=validatingStrings();
+			System.out.println("Ingress email: ");
+			email=validatingStrings();
+			Player player=new Player(name,username,password,email);
+			addUsers(player);
+		}else {
+			System.out.println("Username already in use");
+		}
 	}
 	
 	public void login() {
 		String username, password;
 		System.out.println("Ingress username: ");
 		username=validatingStrings();
-		//Validation for the Username, for the correct length and check if it's already in the system, in case it is, proceed, else informs and returns to the previous menu
-		System.out.println("Ingress password: ");
-		password=validatingStrings();
-		//Validation for the Password, and check if it matches with the one acording to that user
-		
-		//If everything is correct, depending if it's a Player or an Admin, takes it to another menu
+		if(validateUsernameFromFile(username)) {
+			System.out.println("Ingress password: ");
+			password=validatingStrings();
+			if(validateUsernamePasswordFromFile(username,password)) {
+				//Check if it's Player or Admin and sends to different menus
+			}else {
+				System.out.println("Incorrect Username or Password");
+			}
+		}else {
+			System.out.println("Incorrect Username");
+		}
 	}
 	
 	private String validatingStrings() {
@@ -107,15 +117,44 @@ public class ConsoleMainMenu implements ISystemMessage{
 		}while(word.length()<=0);
 		return word;
 	}
+	
+	private boolean validateUsernameFromFile(String username) {
+		boolean flag=false;
+		for(Player u:getUsers().getList()) {
+			if(u.getUsername()==username) {
+				flag=true;
+			}
+		}
+		return flag;
+	}
+	
+	private boolean validateUsernamePasswordFromFile(String username, String password) {
+		boolean flag=false;
+		for(Player u:getUsers().getList()) {
+			if(u.getUsername()==username) {
+				if(u.getPassword()==password) {
+					flag=true;
+				}
+			}
+		}
+		return flag;
+	}
 
 	//Getter Setter
-	private byte getOp() {
+	protected byte getOp() {
 		return op;
 	}
 
-	private void setOp(byte op) {
+	protected void setOp(byte op) {
 		this.op = op;
 	}
 	
+	protected CRUD<Player> getUsers(){
+		return this.users;
+	}
+	
+	protected void addUsers(Player p) throws Exception {
+		this.users.create(p);
+	}
 	
 }
