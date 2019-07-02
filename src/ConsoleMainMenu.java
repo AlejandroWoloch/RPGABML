@@ -60,7 +60,12 @@ public class ConsoleMainMenu extends ConsoleMenu{
 			if(finalUser!=null) {
 				System.out.println("You've logged in");
 				if(finalUser instanceof Player) {
-					//playerMenu(finalUser);
+					ConsolePlayerMenu cpm=new ConsolePlayerMenu();
+					try {
+						cpm.playerMenu((Player) finalUser);
+					} catch (Exception e) {
+						System.out.println("There was an unexpected error: " + e.getMessage());
+					}
 				}else {
 					//adminMenu(finalUser);
 				}
