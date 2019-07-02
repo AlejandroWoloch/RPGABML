@@ -14,7 +14,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 		super(name);
 		this.setMana(maxMana);
 		this.setInteligence(super.getLevel()*25);
-		this.spellList.initialize();
+		this.spellList= new CRUD<Spell>();
 	}
 
  	public MagicalClass(

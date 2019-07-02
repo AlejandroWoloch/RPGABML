@@ -47,7 +47,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 		}
 	}
 	
-	public void login() {
+	public void login() throws Exception {
 		String username, password;
 		User finalUser;
 		System.out.println("Ingress username: ");
@@ -61,13 +61,15 @@ public class ConsoleMainMenu extends ConsoleMenu{
 				if(finalUser instanceof Player) {
 					ConsolePlayerMenu cpm=new ConsolePlayerMenu();
 					try {
-						cpm.playerMenu((Player) finalUser);
+						finalUser=cpm.playerMenu((Player) finalUser);
 					} catch (Exception e) {
 						System.out.println("There was an unexpected error: " + e.getMessage());
 					}
 				}else {
 					//adminMenu(finalUser);
 				}
+				users.update(finalUser);
+				writeUserFile();
 			}else {
 				System.out.println("Incorrect Username or Password");
 			}
