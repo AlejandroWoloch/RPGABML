@@ -56,18 +56,7 @@ public class Player extends User {
 		}
 	}
 	
-	//Methods
-	public void administrateCharacters() {/*Don't know what objective will have this method*/}
-	
-	public void startGame() {/*Will be defined when we have all the other classes defined*/}
-	
-	public void createCharacter(/*Here goes every detail to define the character*/) {
-		/*
-		 * Here goes the logic to define which Class of playable character is being created
-		 */
-	}
-	
-	//public void administrateInventory() {} //Not going to use this for now
+
 
 
 	//To String, Equals, HashCode.
@@ -91,6 +80,8 @@ public class Player extends User {
 		return Objects.hash(getId());
 	}
 	
+	//Methods
+	
 	public void updateCharacter(PlayableCharacter newCharacter) throws Exception{
 		if(newCharacter != null) {
 			this.character = newCharacter;
@@ -99,4 +90,6 @@ public class Player extends User {
 			throw new Exception("Can't create a null character");
 		}
 	}
+	
+
 }
