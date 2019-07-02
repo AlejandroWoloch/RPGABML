@@ -18,7 +18,7 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 			insertOption(quant);
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
 			switch(getOp()) {
-			case 1: System.out.println("Starting Fight"); startFight(); break;
+			//case 1: System.out.println("Starting Fight"); startFight(); break;
 			case 0: //System.exit(0);	
 					break;
 			}
@@ -29,15 +29,15 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 	
 	public PlayableCharacter startFight() throws Exception {
 		NonPlayableCharacter npc= new NonPlayableCharacter(getPc().getLevel(), "Elvis");
-		while(npc.getHp()>0 || pc.getHp()>0) {
-			System.out.println("Your turn to attack, your HP: " + pc.getHp);
+		while(npc.getCurrentHP()>0 || pc.getCurrentHP()>0) {
+			System.out.println("Your turn to attack, your HP: " + pc.getCurrentHP());
 			npc.takeDamage(pc.calculateAttack());
-			if(monsterhp>0) {
-				System.out.println(npc.getName()+ "'s turn to attack, his HP: "+npc.getHp);
+			if(npc.getCurrentHP()>0) {
+				System.out.println(npc.getName()+ "'s turn to attack, his HP: "+npc.getCurrentHP());
 				pc.takeDamage(pc.calculateAttack());
 			}
 		}
-		if(monsterhp<=0) {
+		if(npc.getCurrentHP()<=0) {
 			System.out.println("You won. You've gained: " + npc.getExpRewarded() + " Exp");
 			pc.gainExperience(npc.getExpRewarded());
 		}else {
