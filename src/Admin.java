@@ -84,7 +84,12 @@ public class Admin extends User{
 	}
 	
 	public void administrateMonsters() {
-		System.out.println("MONSTRUOS\n1. Mostrar Lista\n2. Crear nuevo monstruo\n3. Buscar Monstruo\n4. ");
+		System.out.println("MONSTRUOS\n"
+				+ "1. Mostrar Lista\n"
+				+ "2. Crear nuevo monstruo\n"
+				+ "3. Buscar Monstruo por id\n"
+				+ "4. Guardar cambios en el sistema\n"
+				+ "5. Persistir Informacion guardada en el sistema");
 	}
 	
 	public void administrateUsers() {
