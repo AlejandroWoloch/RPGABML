@@ -11,34 +11,46 @@ public class Warrior extends PhysicalClass{
 		super(level, name,experience,stamina);
 	}
 	
-	/*COMENTED UNTIL WE IMPLEMENT SKILLS AND ITEMS
+
+	// Methods
 	@Override
-	public void lernNewSkill(PhysicalSkill newSkill) {
+	public void lernNewSkill(PhysicalSkill newSkill) throws Exception {
 		if(! this.getSkillList().contains(newSkill)) {
-			if(newSkill.getAviableClasses().contains("Warrior")) {
-				if(newSkill.getLevelRequired() <= this.getLevel())
-					this.getSkillList().add(newSkill);
+			if(newSkill.getClassUser().contains("Warrior")) {
+				super.skillList.create(newSkill);
+			} else {
+				throw new Exception("You can't learn that");
 			}
+		} else {
+			throw new Exception("You already know that");
 		}
 	}
-	
-	*/
+
+	@Override
+	public void updateSkill(PhysicalSkill skill) throws Exception {
+		if(this.getSkillList().get(skill.id) != null) {
+			super.skillList.update(skill);
+	} else {
+		throw new Exception("You can't update an object that doesn't exist");
+	}
+		
+	}
 	
 	//toString and Equals
-			@Override
-			public boolean equals(Object obj) {
-				return super.equals(obj);
-			}
-			
-			// Override hashCode method.
-			@Override
-			public int hashCode() {
-				return super.hashCode();
-			}
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
+	// Override hashCode method.
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
-			// Override toString method.
-			@Override
-			public String toString() {
-				return "Warrior " + super.toString();
-			}
+	// Override toString method.
+	@Override
+	public String toString() {
+		return "Warrior " + super.toString();
+	}
 }

@@ -1,12 +1,13 @@
+import java.util.List;
 
 public abstract class PhysicalClass extends PlayableCharacter{
 	
 	// Attributes
+	private static final long serialVersionUID = 1L;
 	private static final int maxStamina = 100;
 	private int stamina;
-	private CRUD<PhysicalSkill> skills;
-	private int maxSkills;
 	private static String msgError = "Error: Invalid value.";
+	protected CRUD<PhysicalSkill> skillList;
 	
 	
 	//Constructors
@@ -40,40 +41,36 @@ public abstract class PhysicalClass extends PlayableCharacter{
 		return maxStamina;
 	}
 	
-	public ArrayList<PhysicalSkill> getSkillList() {
+	public List<PhysicalSkill> getSkillList() {
 		return this.skillList.getList();
 	}
 	
-	public abstract void lernNewSkill(PhysicalSkill newSkill);
+	public abstract void lernNewSkill(PhysicalSkill newSkill) throws Exception;
+ 	public abstract void updateSkill(PhysicalSkill skill) throws Exception;
 	
-	public void forgetSkill(int id) {
-		
+	public void forgetSkill(int id) throws Exception {
 		try {
-			this.skills.delete(id)
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
+			this.skillList.delete(id);
+		} catch (Exception error) {
+			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
 		}
 	}
-	
-	
-	
-	
-	//toString and Equals
-		@Override
-		public boolean equals(Object obj) {
-			return super.equals(obj);
-		}
-		
-		// Override hashCode method.
-		@Override
-		public int hashCode() {
-			return super.hashCode();
-		}
 
-		// Override toString method.
-		@Override
-		public String toString() {
-			return "PhysicalClass [Stamina = " + this.getStamina() + "]" + super.toString();
-		}
+	//toString and Equals
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
+	// Override hashCode method.
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	// Override toString method.
+	@Override
+	public String toString() {
+		return "PhysicalClass [Stamina = " + this.getStamina() + "]" + super.toString();
+	}
 }

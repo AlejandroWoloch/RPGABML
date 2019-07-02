@@ -10,33 +10,46 @@ public class Hunter extends PhysicalClass{
 	public Hunter(byte level, String name, int experience, int stamina) throws Exception{ //Used to instance characters with data from JSON
 		super(level, name,experience,stamina);
 	}
-	/*COMENTED UNTIL WE IMPLEMENT SKILLS AND ITEMS
+	
+	// Methods
 	@Override
-	public void lernNewSkill(PhysicalSkill newSkill) {
+	public void lernNewSkill(PhysicalSkill newSkill) throws Exception {
+		
 		if(! this.getSkillList().contains(newSkill)) {
-			if(newSkill.getAviableClasses().contains("Hunter")) {
-				if(newSkill.getLevelRequired() <= this.getLevel())
-					this.getSkillList().add(newSkill);
+			if(newSkill.getClassUser().contains("Hunter")) {
+				this.getSkillList().add(newSkill);
+			} else {
+				throw new Exception("You can't learn that");
 			}
+		} else {
+			throw new Exception("You already know that");
 		}
 	}
-	*/
+	
+	@Override
+	public void updateSkill(PhysicalSkill skill) throws Exception {
+		if(this.getSkillList().get(skill.id) != null) {
+				super.skillList.update(skill);
+		} else {
+			throw new Exception("You can't update an object that doesn't exist");
+		}
+	}
 	
 	//toString and Equals
-			@Override
-			public boolean equals(Object obj) {
-				return super.equals(obj);
-			}
-			
-			// Override hashCode method.
-			@Override
-			public int hashCode() {
-				return super.hashCode();
-			}
+		@Override
+		public boolean equals(Object obj) {
+			return super.equals(obj);
+		}
+		
+		// Override hashCode method.
+		@Override
+		public int hashCode() {
+			return super.hashCode();
+		}
 
-			// Override toString method.
-			@Override
-			public String toString() {
-				return "Hunter " + super.toString();
-			}
+		// Override toString method.
+		@Override
+		public String toString() {
+			return "Hunter " + super.toString();
+		}
 }
