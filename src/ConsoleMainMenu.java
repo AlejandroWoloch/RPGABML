@@ -7,15 +7,14 @@ public class ConsoleMainMenu implements ISystemMessage{
 	//attributes
 	private byte op;
 	private Scanner sc;
-	private CRUD<Player> users=null;
+	private CRUD<User> users=null;
 	
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
 		sc= new Scanner(System.in);
-		users= new CRUD<Player>();
+		users= new CRUD<User>();
 		DataManager.initDataManager();
-		users.clear();
-		users.updateAll(castList(Player.class,DataManager.getData(DataManager.Colection.PLAYER)));
+		users=readPlayerAdminFiles();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -91,12 +90,20 @@ public class ConsoleMainMenu implements ISystemMessage{
 	
 	public void login() {
 		String username, password;
+		User finalUser;
 		System.out.println("Ingress username: ");
 		username=validatingStrings();
 		if(validateUsernameFromFile(username)) {
 			System.out.println("Ingress password: ");
 			password=validatingStrings();
-			if(validateUsernamePasswordFromFile(username,password)) {
+			finalUser=validateUsernamePasswordFromFile(username,password);
+			if(finalUser==null) {
+				System.out.println("You've logged in");
+				if(finalUser instanceof Player) {
+					//playerMenu(finalUser);
+				}else {
+					//adminMenu(finalUser);
+				}
 				//Check if it's Player or Admin and sends to different menus
 			}else {
 				System.out.println("Incorrect Username or Password");
@@ -120,24 +127,48 @@ public class ConsoleMainMenu implements ISystemMessage{
 	
 	private boolean validateUsernameFromFile(String username) {
 		boolean flag=false;
-		for(Player u:getUsers().getList()) {
-			if(u.getUsername()==username) {
+		for(User u:getUsers().getList()) {
+			if(u.getUsername().equals(username)) {
 				flag=true;
 			}
 		}
 		return flag;
 	}
 	
-	private boolean validateUsernamePasswordFromFile(String username, String password) {
-		boolean flag=false;
-		for(Player u:getUsers().getList()) {
-			if(u.getUsername()==username) {
-				if(u.getPassword()==password) {
-					flag=true;
+	private User validateUsernamePasswordFromFile(String username, String password) {
+		User user=null;
+		for(User u:getUsers().getList()) {
+			if(u.getUsername().equals(username)) {
+				if(u.getPassword().equals(password)) {
+					user=u;
 				}
 			}
 		}
-		return flag;
+		return user;
+	}
+	
+	private CRUD<User> readPlayerAdminFiles() throws Exception{
+		CRUD<Player> p= new CRUD<Player>();
+		CRUD<Admin> a= new CRUD<Admin>();
+		try {
+			p.updateAll(castList(Player.class,DataManager.getData(DataManager.Colection.PLAYER)));
+		}catch (Exception e) {
+			
+		}
+		try {
+			a.updateAll(castList(Admin.class,DataManager.getData(DataManager.Colection.ADMIN)));
+		}catch (Exception e) {
+		
+		}
+		CRUD<User> u= new CRUD<User>();
+		for(Player pl:p.getList()) {
+			u.create(pl);
+		}
+		for(Admin ad:a.getList()) {
+			u.create(ad);
+		}
+		
+		return u;
 	}
 
 	//Getter Setter
@@ -149,7 +180,7 @@ public class ConsoleMainMenu implements ISystemMessage{
 		this.op = op;
 	}
 	
-	protected CRUD<Player> getUsers(){
+	protected CRUD<User> getUsers(){
 		return this.users;
 	}
 	
