@@ -36,11 +36,19 @@ public class Mage extends MagicalClass {
 
 	@Override
 	public void lernNewSpell(Spell newSpell) throws Exception {
-		super.spellList.create(newSpell);
+		try {
+			super.spellList.create(newSpell);
+		} catch (Exception error) {
+			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
+		}
 	}
 
 	@Override
 	public void updateSpell(Spell spell) throws Exception {
-		super.spellList.update(spell);
+		try {
+			super.spellList.update(spell);
+		} catch (Exception error) {
+			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
+		}
 	}
 }
