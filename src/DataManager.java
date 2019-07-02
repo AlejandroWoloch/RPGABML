@@ -12,7 +12,7 @@ public class DataManager {
 	 * List of all the different clases that have instances that needs to be persisted
 	 */
 	enum Colection{
-		PLAYABLECHARACTER, NONPLAYABLECHARACTER, PLAYER, ADMIN, SPELL, PHYSICALSKILL
+		PLAYABLECHARACTER, NONPLAYABLECHARACTER, USER, SPELL, PHYSICALSKILL
 	}
 		
 	private static Map<Colection,String> fileNames = new HashMap<Colection,String>();	//File Names for persisted data, mapped to key from Colection enum
