@@ -49,3 +49,4 @@ $RECYCLE.BIN/
 *.lnk
 
 /bin/
+*.file
