@@ -8,8 +8,8 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 	//Constructor
 	public ConsolePlayerMenu() throws Exception {
 		this.chars= new CRUD<PlayableCharacter>();
-		DataManager.initDataManager();
-		this.chars=readCharacterFile();
+		//DataManager.initDataManager();
+		//this.chars=readCharacterFile();
 	}
 	
 	//Methods
@@ -77,7 +77,7 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 			case 0: break;
 				}
 			}while(getOp()!=0);
-		writeCharacterFile();
+		//writeCharacterFile();
 	}
 	
 	public void withCharacterMenu() throws Exception {
@@ -102,10 +102,11 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 					updatePlayersCharacter(pc);
 					break;
 			case 3:/* ConsoleCombatMenu ccm=new ConsoleCombatMenu();
-					pc=cmm.combatMenu;*/
+					pc=cmm.combatMenu(pc);*/
 					updatePlayersCharacter(pc);
 					break;
-			case 0: System.exit(0);	
+			case 0: //System.exit(0);	
+					break;
 			}
 		}while(getOp()!=0);
 	}

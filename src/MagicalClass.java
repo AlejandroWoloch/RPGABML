@@ -58,7 +58,7 @@ public abstract class MagicalClass extends PlayableCharacter {
 	@Override
 	public String toString() {
 		String base = super.toString();
-		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d, Spells\n" + this.spellList.read() + "]";
+		String messageFmt = "\n=> MagicalClass\n[Mana: %d, Inteligence: %d, Spells\n" + this.getSpellList().isEmpty() == null ? this.spellList.read() : "No Spells" + "]";
 		return base.concat(String.format(messageFmt, getMana(), getInteligence()));
 	}
 		
