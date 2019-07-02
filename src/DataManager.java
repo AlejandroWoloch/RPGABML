@@ -139,7 +139,12 @@ public class DataManager {
   	 * inherited from PersistenceCollection.ReadFromFile()
   	 */
   	private static void readDataFromSingleFile(Colection colection) throws Exception{
-		data.put(colection, persistenceCollection.ReadFromFile(fileNames.get(colection)));
+  		try {
+  			data.put(colection, persistenceCollection.ReadFromFile(fileNames.get(colection)));
+  		}
+  		catch (Exception e) {
+  			throw new Exception ("Could't get data from " + fileNames.get(colection) + ". Posible Reason: " + e.getMessage());
+  		}
   	}
   		
   	/**

@@ -7,8 +7,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
 		users= new CRUD<User>();
-		//DataManager.initDataManager();
-		//users=readUserFile();
+		users=readUserFile();
 	}
 	
 	//Methods
@@ -23,7 +22,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 			switch(getOp()) {
 			case 1: System.out.println("Accessing Create an Account"); createAccount(); break;
 			case 2: System.out.println("Accessing Login"); login(); break;
-			case 0: System.exit(0);	
+			case 0: DataManager.writeAllFiles(); System.exit(0);	
 			}
 		}while(getOp()!=0);
 	}
@@ -102,7 +101,6 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	private CRUD<User> readUserFile() throws Exception{
 		CRUD<User> u= new CRUD<User>();
-		DataManager.readAllFiles();
 		try {
 			u.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
 		}catch (Exception e) {
@@ -113,7 +111,6 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	private void writeUserFile() throws Exception {
 		DataManager.updateData(DataManager.Colection.USER, getUsers().getList());
-		DataManager.writeAllFiles();
 	}
 
 	//Getter Setter

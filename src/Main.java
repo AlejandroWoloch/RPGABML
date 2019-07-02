@@ -23,8 +23,19 @@ public class Main {
 
 	public static void main(String[] args) throws Exception{
 		
+		
+		DataManager.initDataManager();
+		try {
+			DataManager.readAllFiles();
+		}
+		catch (Exception e) { 
+			System.out.println(e.getMessage());
+		}
+		
 		ConsoleMainMenu cmm= new ConsoleMainMenu();
 		cmm.menu();
+		
+		
 	}
 
 }
