@@ -10,7 +10,6 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	private String name;
 	private byte level;
 	protected final byte maxLevel = 50;
-	protected final byte baseCost = 2;
 	private String classUser; //Class that can use this ability
 	
 	
@@ -84,10 +83,6 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	}
 	
 	//Methods
-	
-	public abstract byte calculateCost(); //The cost will be calculated by the concrete classes
-	
-	
 	// Override equals method.
 	@Override
 	public boolean equals(Object obj) {

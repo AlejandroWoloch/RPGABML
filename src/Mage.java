@@ -2,15 +2,16 @@
 public class Mage extends MagicalClass {
 
 	// Attributes
-	
+	private static final long serialVersionUID = 1L;
+
 	// Constructors
-	public Mage(String name, int mana, int inteligence) {
+	public Mage(String name, int mana, int inteligence) throws Exception {
 		super(name, mana, inteligence);
 		
 	}
 	
-	public Mage(String name, int mana, int inteligence, byte level, int experience ) {
-		super(level, name, experience, mana, inteligence);
+	public Mage(String name, int mana, int inteligence, byte level, int experience ) throws Exception {
+		super(level, experience, mana, inteligence, name);
 		
 	}
 	
@@ -30,11 +31,25 @@ public class Mage extends MagicalClass {
 	// Override toString method.
 	@Override
 	public String toString() {
-		super.toString();
-		/*String base = super.toString();
-		String messageFmt = "\n=> Spell\n[Damage: %d]";
-		return base.concat(String.format(messageFmt, getDamage()));*/
+		return super.toString();
 	}
-	
-	// Getters and Setters
+
+	@Override
+	public void lernNewSpell(Spell newSpell) {
+		try {
+			super.spellList.create(newSpell);
+		} catch (Exception error) {
+			error.getMessage();
+		}
+	}
+
+	@Override
+	public void updateSpell(Spell spell) {
+		try {
+			super.spellList.update(spell);
+		} catch (Exception error) {
+			error.getMessage();
+		}
+		
+	}
 }
