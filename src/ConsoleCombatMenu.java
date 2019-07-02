@@ -21,9 +21,11 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 			insertOption(quant);
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
 			switch(getOp()) {
-			//case 1: System.out.println("Starting Fight"); startFight(); break;
-			case 0: //System.exit(0);	
-					break;
+			case 1: System.out.println("Starting Fight"); startFight(); break;
+			case 0: 
+				DataManager.writeAllFiles();
+				System.exit(0);	
+				break;
 			}
 		}while(getOp()!=0);
 		setOp((byte)-1);

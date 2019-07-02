@@ -33,7 +33,7 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
 			switch(getOp()) {
 			case 1: System.out.println("Accessing Create a Character"); createCharacter(); break;
-			case 0: System.exit(0);	
+			case 0: DataManager.writeAllFiles();System.exit(0);	
 			}
 		}while(getOp()!=0);
 	}
@@ -74,7 +74,10 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 					setOp((byte)0);
 					updatePlayersCharacter(wa);
 					break;
-			case 0: break;
+			case 0: 
+					DataManager.writeAllFiles();
+					System.exit(0);	
+					break;
 				}
 			}while(getOp()!=0);
 		//writeCharacterFile();
@@ -105,7 +108,8 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 					pc=ccm.combatMenu();
 					updatePlayersCharacter(pc);
 					break;
-			case 0: //System.exit(0);	
+			case 0: DataManager.writeAllFiles();
+					System.exit(0);	
 					break;
 			}
 		}while(getOp()!=0);
