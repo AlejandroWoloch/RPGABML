@@ -14,7 +14,7 @@ public class Admin extends User{
 		
 	}
 	
-	public void administratePlayers() {
+	public void administrateUsers() {
 		
 	}
 }
