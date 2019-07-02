@@ -65,7 +65,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 						System.out.println("There was an unexpected error: " + e.getMessage());
 					}
 				}else {
-					//adminMenu(finalUser);
+					adminMenu(finalUser);
 				}
 				users.update(finalUser);
 				writeUserFile();
@@ -75,6 +75,75 @@ public class ConsoleMainMenu extends ConsoleMenu{
 		}else {
 			System.out.println("Incorrect Username");
 		}
+	}
+	
+	private void adminMenu(User finalUser) throws Exception {
+		ArrayList<String> s= new ArrayList<>();
+		s.add("Users");
+		s.add("Spells");
+		s.add("Skills");
+		s.add("Monsters");
+		do {
+			int quant= generateOptions(s);
+			insertOption(quant);
+			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
+			switch(getOp()) {
+			case 1: System.out.println("Accessing CRUD Users"); menuCrud("user"); break;
+			case 2: System.out.println("Accessing CRUD Spells"); menuCrud("spell"); break;
+			case 3: System.out.println("Accessing CRUD Skills"); menuCrud("skill"); break;
+			case 4: System.out.println("Accessing CRUD Monsters"); menuCrud("monster"); break;
+			case 0: DataManager.writeAllFiles(); System.exit(0);	
+			}
+		}while(getOp()!=0);
+	}
+	
+	private void menuCrud(String type) {
+		ArrayList<String> s= new ArrayList<>();
+		s.add("Create");
+		s.add("Delete");
+		s.add("Update");
+		s.add("Read");
+		do {
+			int quant= generateOptions(s);
+			insertOption(quant);
+			sc.nextLine(); //This is used to get to read the next line and not the number of the option input
+			switch(getOp()) {
+			case 1: 
+				System.out.println("Accessing to Create");
+				switch(type) {
+				case "user": menuCrudUser(); break;
+				case "spell": menuCrudUser(); break;
+				case "skill": menuCrudUser(); break;
+				case "monster": menuCrudUser(); break;
+				}
+				break;
+			case 2: System.out.println("Accessing to Delete");
+				switch(type) {
+				case "user": menuCrudUser(); break;
+				case "spell": menuCrudUser(); break;
+				case "skill": menuCrudUser(); break;
+				case "monster": menuCrudUser(); break;
+				}
+				break;
+			case 3: System.out.println("Accessing to Uelete");
+				switch(type) {
+				case "user": menuCrudUser(); break;
+				case "spell": menuCrudUser(); break;
+				case "skill": menuCrudUser(); break;
+				case "monster": menuCrudUser(); break;
+				}
+				break;
+			case 4: System.out.println("Accessing to Read");
+				switch(type) {
+				case "user": menuCrudUser(); break;
+				case "spell": menuCrudUser(); break;
+				case "skill": menuCrudUser(); break;
+				case "monster": menuCrudUser(); break;
+				}
+				break;
+			case 0: DataManager.writeAllFiles(); System.exit(0);	
+			}
+		}while(getOp()!=0);
 	}
 	
 	private boolean validateUsernameFromFile(String username) {
