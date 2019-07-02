@@ -13,9 +13,8 @@ public abstract class User extends Base implements ISystemMessage, Serializable 
 	private String email;
 	
 	// Constructor
-	public User(int lastId, String name, String username, String email) throws Exception {
+	public User(String name, String username, String email) throws Exception {
 		super();
-		User.setLastId(lastId);
 		this.setId();
 		this.setName(name);
 		this.setUsername(username);

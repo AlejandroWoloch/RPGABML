@@ -10,12 +10,12 @@ public class Admin extends User{
 	CRUD<PhysicalSkill> skills = null;
 	
 	//Constructors
-	public Admin(String name, String username, String email, boolean getData) throws Exception {
-		super(0,name, username, email);
+	public Admin(String name, String username, String email) throws Exception {
+		super(name, username, email);
 		this.initializateCRUDs();
 	}
 
-	public Admin(String name, String username, String password, String email, boolean getData) throws Exception {
+	public Admin(String name, String username, String password, String email) throws Exception {
 		super(name, username, password, email);
 		this.initializateCRUDs();
 	}

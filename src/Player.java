@@ -19,7 +19,7 @@ public class Player extends User {
 	}
 
 	public Player(String name, String username, String email) throws Exception {
-		super(0,name, username, email);
+		super(name, username, email);
 		this.setGold(0);
 		this.character= null;
 	}
