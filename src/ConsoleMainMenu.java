@@ -7,7 +7,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
 		users= new CRUD<User>();
-		//users=readUserFile();
+		users=readUserFile();
 	}
 	
 	//Methods
@@ -101,7 +101,6 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	private CRUD<User> readUserFile() throws Exception{
 		CRUD<User> u= new CRUD<User>();
-		DataManager.readAllFiles();
 		try {
 			u.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
 		}catch (Exception e) {
@@ -112,7 +111,6 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	private void writeUserFile() throws Exception {
 		DataManager.updateData(DataManager.Colection.USER, getUsers().getList());
-		DataManager.writeAllFiles();
 	}
 
 	//Getter Setter
