@@ -22,7 +22,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 			switch(getOp()) {
 			case 1: System.out.println("Accessing Create an Account"); createAccount(); break;
 			case 2: System.out.println("Accessing Login"); login(); break;
-			case 0: System.exit(0);	
+			case 0: DataManager.writeAllFiles(); System.exit(0);	
 			}
 		}while(getOp()!=0);
 	}

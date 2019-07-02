@@ -35,7 +35,7 @@ public class Main {
 		ConsoleMainMenu cmm= new ConsoleMainMenu();
 		cmm.menu();
 		
-		DataManager.writeAllFiles();
+		
 	}
 
 }
