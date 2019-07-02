@@ -12,15 +12,31 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	private static short baseDefense = 2;
 	private static short baseHp = 50;
 	private String name;
+	private int currentHP;
 	
 	// Constructor
 	public Character(byte level, String name) throws Exception {
 		super();
 		this.setLevel(level);
 		this.setName(name);
+		this.setCurrentHP(this.calculateHp());
+		
 	}
 
 	// Methods
+	public void setCurrentHP(int currentHP) {
+		this.currentHP = Math.max(0, currentHP);
+	}
+	
+	public int getCurrentHP() {
+		return this.currentHP;
+	}
+	
+	public void takeDamage(int damageRecived) {
+		int damageTaken = (int) (damageRecived * (100/(100 + this.calculateDefense())));
+		this.setCurrentHP(this.getCurrentHP() - damageTaken);
+	}
+	
 	/**
 	 * Abstract method to calculate the attack (damage) of a character
 	 * 
