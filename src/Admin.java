@@ -9,7 +9,6 @@ public class Admin extends User{
 	CRUD<Spell> spells = null;
 	CRUD<PhysicalSkill> skills = null;
 	
-	
 	//Constructors
 	public Admin(String name, String username, String email, boolean getData) throws Exception {
 		super(0,name, username, email);
@@ -58,15 +57,19 @@ public class Admin extends User{
 		switch(colection) {
 		case USER:
 			users.updateAll(Main.castList(User.class, DataManager.getData(DataManager.Colection.USER)));
+			User.setLastId(users.getList().size());
 			break;
 		case NONPLAYABLECHARACTER:
 			monsters.updateAll(Main.castList(NonPlayableCharacter.class, DataManager.getData(DataManager.Colection.NONPLAYABLECHARACTER)));
+			NonPlayableCharacter.setLastId(monsters.getList().size());
 			break;
 		case SPELL:
 			spells.updateAll(Main.castList(Spell.class, DataManager.getData(DataManager.Colection.SPELL)));
+			Spell.setLastId(spells.getList().size());
 			break;
 		case PHYSICALSKILL:
 			skills.updateAll(Main.castList(PhysicalSkill.class, DataManager.getData(DataManager.Colection.PHYSICALSKILL)));
+			PhysicalSkill.setLastId(skills.getList().size());
 			break;
 		default:
 			throw new Exception ("Wrong type");

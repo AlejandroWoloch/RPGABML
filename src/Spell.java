@@ -3,16 +3,19 @@ public abstract class Spell extends Ability {
 	// Attributes
 	private static final long serialVersionUID = 1L;
 	private int damage;
+	private static int lastId;
 	
 	// Constructors
 	public Spell(int damage, String name, String classUser) throws Exception {
 		super(name, classUser);
 		this.setDamage(damage);
+		this.setId();
 	}
 	
 	public Spell(String name, byte level, String classUser, int damage) throws Exception {
 		super(name, level, classUser);
 		this.setDamage(damage);
+		this.setId();
 	}
 	
 	// Methods
@@ -38,6 +41,18 @@ public abstract class Spell extends Ability {
 	
 
 	// Getters and Setters
+	public static void setLastId(int lastId) {
+		Spell.lastId = lastId;
+	}
+	
+	private static int getLastId() {
+		return ++Spell.lastId;
+	}
+	
+	private void setId() {
+		this.id = Spell.getLastId();
+	}
+	
 	public int getDamage() {
 		return damage;
 	}

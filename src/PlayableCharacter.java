@@ -5,16 +5,18 @@ public abstract class PlayableCharacter extends Character{
 	private static final long serialVersionUID = 1L;
 	private static byte baseForNextLevelXP = 100; 	//Used for levelingUp
 	private int experience;					//Current XP, can't exceed experience for next level.
+	private static int lastId;
 	
 	
 	//Constructors
 	public PlayableCharacter(String name) throws Exception{ //For brand new Characters that will start at level 1
-		super(0,(byte) 1, name);
+		super((byte) 1, name);
+		this.setId();
 		this.setExperience(0);
 	}
 	
 	public PlayableCharacter(byte level, String name, int experience) throws Exception{ //Used to instance characters with data from JSON
-		super(0,level, name);
+		super(level, name);
 		this.setExperience(experience);
 	}
 	
@@ -31,6 +33,18 @@ public abstract class PlayableCharacter extends Character{
 			throw new Exception(valueErrorMessage + xpError);
 		}
 		
+	}
+	
+	public static void setLastId(int lastId) {
+		PlayableCharacter.lastId = lastId;
+	}
+	
+	private static int getLastId() {
+		return ++PlayableCharacter.lastId;
+	}
+	
+	private void setId() {
+		this.id = PlayableCharacter.getLastId();
 	}
 	
 	public int getExperience() {
