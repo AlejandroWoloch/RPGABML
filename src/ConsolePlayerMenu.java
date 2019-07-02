@@ -101,8 +101,8 @@ public class ConsolePlayerMenu extends ConsoleMenu {
 					pc.setName(name);
 					updatePlayersCharacter(pc);
 					break;
-			case 3:/* ConsoleCombatMenu ccm=new ConsoleCombatMenu();
-					pc=cmm.combatMenu(pc);*/
+			case 3: ConsoleCombatMenu ccm=new ConsoleCombatMenu(pc);
+					pc=ccm.combatMenu();
 					updatePlayersCharacter(pc);
 					break;
 			case 0: //System.exit(0);	
