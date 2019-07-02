@@ -1,7 +1,9 @@
 
 public class Warrior extends PhysicalClass{
 	
-	
+	// Attributes
+	private static final long serialVersionUID = 1L;
+
 	//Constructors
 	public Warrior(String name) throws Exception{	//For brand new Hunters
 		super(name);

@@ -1,6 +1,8 @@
 
 public class Hunter extends PhysicalClass{
 	
+	// Attributes
+		private static final long serialVersionUID = 1L;
 	
 	//Constructors
 	public Hunter(String name) throws Exception{	//For brand new Hunters
