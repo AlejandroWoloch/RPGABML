@@ -36,19 +36,23 @@ public class Cleric extends MagicalClass {
 
 	@Override
 public void lernNewSpell(Spell newSpell) throws Exception {
-		try {
-			super.spellList.create(newSpell);
-		} catch (Exception error) {
-			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
+		if(! this.getSpellList().contains(newSpell)) {
+			if(newSpell.getClassUser().contains("Cleric")) {
+				super.spellList.create(newSpell);
+			} else {
+				throw new Exception("You can't learn that");
+			}
+		} else {
+			throw new Exception("You already know that");
 		}
 	}
 
 	@Override
 	public void updateSpell(Spell spell) throws Exception {
-		try {
+		if(this.getSpellList().get(spell.id) != null) {
 			super.spellList.update(spell);
-		} catch (Exception error) {
-			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
+		} else {
+			throw new Exception("You can't update an object that doesn't exist");
 		}
 	}
 }

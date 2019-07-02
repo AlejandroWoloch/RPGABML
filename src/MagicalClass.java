@@ -35,7 +35,11 @@ public abstract class MagicalClass extends PlayableCharacter {
  	public abstract void updateSpell(Spell spell) throws Exception;
 
 	public void forgetSpell(int id) throws Exception {
-		this.spellList.delete(id);
+		try {
+			this.spellList.delete(id);
+		} catch (Exception error) {
+			throw new Exception("A problem emerged and the monster couldn't be added. Posible reason: " + error.getMessage());
+		}
 	}
 	
 	// Override equals method.
