@@ -1,10 +1,10 @@
 
 public abstract class PhysicalClass extends PlayableCharacter{
 	
-	//Atributes
+	// Attributes
 	private static final int maxStamina = 100;
 	private int stamina;
-	private CRUD<PhysicalSkill> skills;  //Comented until we implement Skills
+	private CRUD<PhysicalSkill> skills;
 	private int maxSkills;
 	private static String msgError = "Error: Invalid value.";
 	
