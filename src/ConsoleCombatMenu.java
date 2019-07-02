@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ConsoleCombatMenu extends ConsoleMenu {
 	//Attributes
 	PlayableCharacter pc=null;
+	CRUD<NonPlayableCharacter> monstersAviable = null;
 	
 	//Constructor
 	public ConsoleCombatMenu(PlayableCharacter plch) {
 		setPc(plch);
+		this.monstersAviable = new CRUD<NonPlayableCharacter>();
 	}
 	
 	//Methods
@@ -28,7 +31,26 @@ public class ConsoleCombatMenu extends ConsoleMenu {
 	}
 	
 	public PlayableCharacter startFight() throws Exception {
-		NonPlayableCharacter npc= new NonPlayableCharacter(getPc().getLevel(), "Elvis");
+		
+		monstersAviable.updateAll(Main.castList(NonPlayableCharacter.class, DataManager.getData(DataManager.Colection.NONPLAYABLECHARACTER)));
+
+		NonPlayableCharacter npc = null;
+		
+		if(! monstersAviable.getList().isEmpty()) {
+			int monstersAmount = monstersAviable.getList().size();
+			Random rand = new Random();
+			int n = rand.nextInt(monstersAmount);
+			try {
+				npc = monstersAviable.find(n);
+			}
+			catch (Exception e) {
+				npc = new NonPlayableCharacter(getPc().getLevel(), "Elvis from an Exeption");
+			}
+		}
+		else {
+			npc = new NonPlayableCharacter(getPc().getLevel(), "Elvis from an Empty List");
+		}
+			
 		while(npc.getCurrentHP()>0 || pc.getCurrentHP()>0) {
 			System.out.println("Your turn to attack, your HP: " + pc.getCurrentHP());
 			npc.takeDamage(pc.calculateAttack());

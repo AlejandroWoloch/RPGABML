@@ -6,7 +6,6 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 
 	//Attributes
 	private static final long serialVersionUID = 1L;
-	private String name;
 	private byte level;
 	protected final byte maxLevel = 50;
 	private String classUser; //Class that can use this ability
@@ -28,11 +27,6 @@ public abstract class Ability extends Base implements ISystemMessage, Serializab
 	public int getMaxLevel(){
 		return this.maxLevel;
 	}
-
-	public String getName() {
-		return this.name;
-	}
-
 
 	public void setName(String name) throws Exception {
 		if(name.length() > 0) {

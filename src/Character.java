@@ -11,7 +11,6 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 	private static short baseAttack = 5;
 	private static short baseDefense = 2;
 	private static short baseHp = 50;
-	private String name;
 	private int currentHP;
 	
 	// Constructor
@@ -112,10 +111,6 @@ public abstract class Character extends Base implements ISystemMessage, Serializ
 			String setMaxLevelError = "Max level must be higher than one.";
 			throw new Exception(valueErrorMessage + setMaxLevelError);
 		}
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public void setName(String name) throws Exception {
