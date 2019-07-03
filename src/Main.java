@@ -32,8 +32,8 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 		
-		ConsoleMainMenu cmm= new ConsoleMainMenu();
-		cmm.menu();
+			ConsoleMainMenu cmm= new ConsoleMainMenu();
+			cmm.menu();		
 		
 		
 	}

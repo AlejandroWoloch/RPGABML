@@ -6,8 +6,12 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	
 	//Constructor
 	public ConsoleMainMenu() throws Exception {
-		users= new CRUD<User>();
-		users=readUserFile();
+		this.users = new CRUD<User>();
+		try {
+			users.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
+		}catch (Exception e) {
+			
+		}
 	}
 	
 	//Methods
@@ -28,54 +32,60 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	}
 	
 	public void createAccount() throws Exception {
-		String name, username, password, email;
-		System.out.println("Ingress username: ");
-		username=validatingStrings();
-		if(!validateUsernameFromFile(username)) {
-			System.out.println("Ingress password: ");
-			password=validatingStrings();
-			System.out.println("Ingress Name: ");
-			name=validatingStrings();
-			System.out.println("Ingress email: ");
-			email=validatingStrings();
-			Player player=new Player(name,username,password,email);
-			addUsers(player);
-			writeUserFile();
-		}else {
-			System.out.println("Username already in use");
-		}
-	}
+        String name, username, password, email;
+        System.out.println("Ingress username: ");
+        username=validatingStrings();
+        if(!validateUsernameFromFile(username)) {
+            System.out.println("Ingress password: ");
+            password=validatingStrings();
+            System.out.println("Ingress Name: ");
+            name=validatingStrings();
+            System.out.println("Ingress email: ");
+            email=validatingStrings();
+            if(users.getList().isEmpty()) {
+                User adm=new Admin(name,username,password,email);
+                addUsers(adm);
+            }else {
+                User player=new Player(name,username,password,email);
+                addUsers(player);
+            }
+            writeUserFile();
+        }else {
+            System.out.println("Username already in use");
+        }
+    }
 	
 	public void login() throws Exception {
-		String username, password;
-		User finalUser;
-		System.out.println("Ingress username: ");
-		username=validatingStrings();
-		if(validateUsernameFromFile(username)) {
-			System.out.println("Ingress password: ");
-			password=validatingStrings();
-			finalUser=validateUsernamePasswordFromFile(username,password);
-			if(finalUser!=null) {
-				System.out.println("You've logged in");
-				if(finalUser instanceof Player) {
-					ConsolePlayerMenu cpm=new ConsolePlayerMenu();
-					try {
-						finalUser=cpm.playerMenu((Player) finalUser);
-					} catch (Exception e) {
-						System.out.println("There was an unexpected error: " + e.getMessage());
-					}
-				}else {
-					//adminMenu(finalUser);
-				}
-				users.update(finalUser);
-				writeUserFile();
-			}else {
-				System.out.println("Incorrect Username or Password");
-			}
-		}else {
-			System.out.println("Incorrect Username");
-		}
-	}
+        String username, password;
+        User finalUser;
+        System.out.println("Ingress username: ");
+        username=validatingStrings();
+        if(validateUsernameFromFile(username)) {
+            System.out.println("Ingress password: ");
+            password=validatingStrings();
+            finalUser=validateUsernamePasswordFromFile(username,password);
+            if(finalUser!=null) {
+                System.out.println("You've logged in");
+                if(finalUser instanceof Player) {
+                    ConsolePlayerMenu cpm=new ConsolePlayerMenu();
+                    try {
+                        finalUser=cpm.playerMenu((Player) finalUser);
+                    } catch (Exception e) {
+                        System.out.println("There was an unexpected error: " + e.getMessage());
+                    }
+                }else {
+                    ConsoleAdminMenu cam= new ConsoleAdminMenu();
+                    cam.adminMenu(finalUser);
+                }
+                users.update(finalUser);
+                writeUserFile();
+            }else {
+                System.out.println("Incorrect Username or Password");
+            }
+        }else {
+            System.out.println("Incorrect Username");
+        }
+    }
 	
 	private boolean validateUsernameFromFile(String username) {
 		boolean flag=false;
@@ -100,11 +110,12 @@ public class ConsoleMainMenu extends ConsoleMenu{
 	}
 	
 	private CRUD<User> readUserFile() throws Exception{
-		CRUD<User> u= new CRUD<User>();
+		CRUD<User> u= null;
 		try {
 			u.updateAll(castList(User.class,DataManager.getData(DataManager.Colection.USER)));
 		}catch (Exception e) {
-		
+			u = new CRUD<User>();
+			throw new Exception ("HOLA" + e.getMessage());
 		}
 		return u;
 	}
@@ -119,7 +130,7 @@ public class ConsoleMainMenu extends ConsoleMenu{
 		return this.users;
 	}
 	
-	protected void addUsers(Player p) throws Exception {
+	protected void addUsers(User p) throws Exception {
 		this.users.create(p);
 	}
 	
